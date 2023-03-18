@@ -27,8 +27,8 @@ namespace EmailBOT.Class
         public static string SettingsName { get; internal set; }
         public static int MailChangingValue { get; internal set; }
         public static string[] MultiData { get; internal set; }
-        public static RichTextBox Message { get; internal set; }
-        public static RichTextBox MessageHtml { get; internal set; }
+        public static TextBox Message { get; internal set; }
+        public static TextBox MessageHtml { get; internal set; }
         public static SendersList SenderForm { get; internal set; }
         public static string DisplayName { get; internal set; }
         public static string SubjectName { get; internal set; }

@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(task1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpSendingOptions = new System.Windows.Forms.GroupBox();
+            this.txtRandomMapValue = new System.Windows.Forms.NumericUpDown();
+            this.txtMessageHtml = new System.Windows.Forms.TextBox();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.lblMsg = new System.Windows.Forms.Label();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.txtRandomNameSubjectChanger = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
@@ -56,9 +60,7 @@
             this.txtFromMail = new System.Windows.Forms.TextBox();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.txtDelay = new System.Windows.Forms.NumericUpDown();
-            this.txtMessage = new System.Windows.Forms.RichTextBox();
             this.lblthreadAbord = new System.Windows.Forms.Label();
-            this.txtMessageHtml = new System.Windows.Forms.RichTextBox();
             this.pnlAttach = new System.Windows.Forms.Panel();
             this.txtAttachment = new System.Windows.Forms.TextBox();
             this.btnAttachment = new System.Windows.Forms.Button();
@@ -68,11 +70,12 @@
             this.chkGetRandomName = new System.Windows.Forms.CheckBox();
             this.chkAllRandomChangeAfterSent = new System.Windows.Forms.CheckBox();
             this.chkSubjectFaker = new System.Windows.Forms.CheckBox();
+            this.chkRandomMap = new System.Windows.Forms.CheckBox();
             this.chkSentanceMaker = new System.Windows.Forms.CheckBox();
+            this.chkEnableSSL = new System.Windows.Forms.CheckBox();
             this.chkPlain = new System.Windows.Forms.CheckBox();
             this.chkAttachment = new System.Windows.Forms.CheckBox();
             this.lblTotalSentMail = new System.Windows.Forms.Label();
-            this.lblMsg = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -93,6 +96,7 @@
             this.chkPdf = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.chkHtmltemplate = new System.Windows.Forms.RadioButton();
+            this.chkIsBottomBody = new System.Windows.Forms.CheckBox();
             this.chkRandomContent = new System.Windows.Forms.CheckBox();
             this.chkRandomHtml = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -119,9 +123,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.lblClose = new System.Windows.Forms.Label();
             this.chkLogFolderSelect = new System.Windows.Forms.CheckBox();
-            this.chkRandomMap = new System.Windows.Forms.CheckBox();
-            this.chkEnableSSL = new System.Windows.Forms.CheckBox();
             this.grpSendingOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRandomMapValue)).BeginInit();
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRandomNameSubjectChanger)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdelayAfterRandomChange)).BeginInit();
@@ -148,6 +151,10 @@
             // grpSendingOptions
             // 
             this.grpSendingOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.grpSendingOptions.Controls.Add(this.txtRandomMapValue);
+            this.grpSendingOptions.Controls.Add(this.txtMessageHtml);
+            this.grpSendingOptions.Controls.Add(this.txtMessage);
+            this.grpSendingOptions.Controls.Add(this.lblMsg);
             this.grpSendingOptions.Controls.Add(this.pnlBottom);
             this.grpSendingOptions.Controls.Add(this.btnPauseRun);
             this.grpSendingOptions.Controls.Add(this.pnlSendValueFromPerSender);
@@ -165,9 +172,7 @@
             this.grpSendingOptions.Controls.Add(this.txtFromMail);
             this.grpSendingOptions.Controls.Add(this.txtSubject);
             this.grpSendingOptions.Controls.Add(this.txtDelay);
-            this.grpSendingOptions.Controls.Add(this.txtMessage);
             this.grpSendingOptions.Controls.Add(this.lblthreadAbord);
-            this.grpSendingOptions.Controls.Add(this.txtMessageHtml);
             this.grpSendingOptions.Controls.Add(this.pnlAttach);
             this.grpSendingOptions.Controls.Add(this.rdoDelayEachMail);
             this.grpSendingOptions.Controls.Add(this.chkRandomSender);
@@ -180,7 +185,6 @@
             this.grpSendingOptions.Controls.Add(this.chkPlain);
             this.grpSendingOptions.Controls.Add(this.chkAttachment);
             this.grpSendingOptions.Controls.Add(this.lblTotalSentMail);
-            this.grpSendingOptions.Controls.Add(this.lblMsg);
             this.grpSendingOptions.Controls.Add(this.label16);
             this.grpSendingOptions.Controls.Add(this.label7);
             this.grpSendingOptions.Controls.Add(this.label11);
@@ -207,6 +211,57 @@
             this.grpSendingOptions.TabIndex = 0;
             this.grpSendingOptions.TabStop = false;
             this.grpSendingOptions.Enter += new System.EventHandler(this.task1_Enter);
+            // 
+            // txtRandomMapValue
+            // 
+            this.txtRandomMapValue.Location = new System.Drawing.Point(573, 114);
+            this.txtRandomMapValue.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtRandomMapValue.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.txtRandomMapValue.Name = "txtRandomMapValue";
+            this.txtRandomMapValue.Size = new System.Drawing.Size(48, 23);
+            this.txtRandomMapValue.TabIndex = 54;
+            this.txtRandomMapValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtRandomMapValue.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.txtRandomMapValue.Visible = false;
+            // 
+            // txtMessageHtml
+            // 
+            this.txtMessageHtml.Location = new System.Drawing.Point(139, 325);
+            this.txtMessageHtml.Multiline = true;
+            this.txtMessageHtml.Name = "txtMessageHtml";
+            this.txtMessageHtml.Size = new System.Drawing.Size(458, 147);
+            this.txtMessageHtml.TabIndex = 53;
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Location = new System.Drawing.Point(139, 179);
+            this.txtMessage.Multiline = true;
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(458, 124);
+            this.txtMessage.TabIndex = 52;
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMsg.Font = new System.Drawing.Font("MS Reference Specialty", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMsg.ForeColor = System.Drawing.Color.White;
+            this.lblMsg.Location = new System.Drawing.Point(47, 507);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(414, 25);
+            this.lblMsg.TabIndex = 1;
+            this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlBottom
             // 
@@ -542,45 +597,19 @@
             this.txtDelay.TabIndex = 5;
             this.txtDelay.Tag = "";
             // 
-            // txtMessage
-            // 
-            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.ForeColor = System.Drawing.Color.Black;
-            this.txtMessage.Location = new System.Drawing.Point(138, 178);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(460, 125);
-            this.txtMessage.TabIndex = 12;
-            this.txtMessage.Tag = "";
-            this.txtMessage.Text = "";
-            this.txtMessage.Leave += new System.EventHandler(this.txtMessage_Leave);
-            // 
             // lblthreadAbord
             // 
             this.lblthreadAbord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblthreadAbord.AutoSize = true;
             this.lblthreadAbord.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblthreadAbord.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblthreadAbord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.lblthreadAbord.ForeColor = System.Drawing.Color.White;
             this.lblthreadAbord.Location = new System.Drawing.Point(466, 509);
             this.lblthreadAbord.Name = "lblthreadAbord";
             this.lblthreadAbord.Size = new System.Drawing.Size(0, 24);
             this.lblthreadAbord.TabIndex = 2;
             this.toolTip1.SetToolTip(this.lblthreadAbord, "Cancel process");
             this.lblthreadAbord.Click += new System.EventHandler(this.lblthreadAbord_Click);
-            // 
-            // txtMessageHtml
-            // 
-            this.txtMessageHtml.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMessageHtml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessageHtml.ForeColor = System.Drawing.Color.Black;
-            this.txtMessageHtml.Location = new System.Drawing.Point(138, 326);
-            this.txtMessageHtml.Name = "txtMessageHtml";
-            this.txtMessageHtml.Size = new System.Drawing.Size(460, 148);
-            this.txtMessageHtml.TabIndex = 13;
-            this.txtMessageHtml.Tag = "";
-            this.txtMessageHtml.Text = "";
-            this.txtMessageHtml.Leave += new System.EventHandler(this.txtMessageHtml_Leave);
             // 
             // pnlAttach
             // 
@@ -659,6 +688,7 @@
             this.chkRandomSender.TabIndex = 8;
             this.chkRandomSender.Text = "Random Sender";
             this.chkRandomSender.UseVisualStyleBackColor = true;
+            this.chkRandomSender.Visible = false;
             this.chkRandomSender.CheckedChanged += new System.EventHandler(this.chkRandomSender_CheckedChanged);
             // 
             // chkGetRandomName
@@ -702,19 +732,49 @@
             this.chkSubjectFaker.UseVisualStyleBackColor = true;
             this.chkSubjectFaker.Visible = false;
             // 
+            // chkRandomMap
+            // 
+            this.chkRandomMap.AutoSize = true;
+            this.chkRandomMap.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkRandomMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.chkRandomMap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkRandomMap.Location = new System.Drawing.Point(454, 114);
+            this.chkRandomMap.Name = "chkRandomMap";
+            this.chkRandomMap.Size = new System.Drawing.Size(119, 21);
+            this.chkRandomMap.TabIndex = 8;
+            this.chkRandomMap.Text = "Auto Mapper";
+            this.chkRandomMap.UseVisualStyleBackColor = true;
+            this.chkRandomMap.CheckedChanged += new System.EventHandler(this.chkRandomMap_CheckedChanged);
+            // 
             // chkSentanceMaker
             // 
             this.chkSentanceMaker.AutoSize = true;
             this.chkSentanceMaker.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkSentanceMaker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.chkSentanceMaker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkSentanceMaker.Location = new System.Drawing.Point(422, 113);
+            this.chkSentanceMaker.Location = new System.Drawing.Point(399, 113);
             this.chkSentanceMaker.Name = "chkSentanceMaker";
             this.chkSentanceMaker.Size = new System.Drawing.Size(57, 21);
             this.chkSentanceMaker.TabIndex = 8;
             this.chkSentanceMaker.Text = "Map";
             this.chkSentanceMaker.UseVisualStyleBackColor = true;
             this.chkSentanceMaker.CheckedChanged += new System.EventHandler(this.chkAttachment_CheckedChanged);
+            // 
+            // chkEnableSSL
+            // 
+            this.chkEnableSSL.AutoSize = true;
+            this.chkEnableSSL.Checked = true;
+            this.chkEnableSSL.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEnableSSL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkEnableSSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.chkEnableSSL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkEnableSSL.Location = new System.Drawing.Point(6, 11);
+            this.chkEnableSSL.Name = "chkEnableSSL";
+            this.chkEnableSSL.Size = new System.Drawing.Size(106, 21);
+            this.chkEnableSSL.TabIndex = 8;
+            this.chkEnableSSL.Text = "EnableSSL";
+            this.chkEnableSSL.UseVisualStyleBackColor = true;
+            this.chkEnableSSL.CheckedChanged += new System.EventHandler(this.chkAttachment_CheckedChanged);
             // 
             // chkPlain
             // 
@@ -755,17 +815,6 @@
             this.lblTotalSentMail.TabIndex = 1;
             this.lblTotalSentMail.Text = "Total mail sent 0 of 0";
             this.lblTotalSentMail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblMsg
-            // 
-            this.lblMsg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMsg.Font = new System.Drawing.Font("MS Reference Specialty", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMsg.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lblMsg.Location = new System.Drawing.Point(47, 507);
-            this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(414, 25);
-            this.lblMsg.TabIndex = 1;
-            this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label16
             // 
@@ -814,20 +863,20 @@
             // lblHtmlPath
             // 
             this.lblHtmlPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblHtmlPath.ForeColor = System.Drawing.Color.Gray;
-            this.lblHtmlPath.Location = new System.Drawing.Point(4, 478);
+            this.lblHtmlPath.ForeColor = System.Drawing.Color.White;
+            this.lblHtmlPath.Location = new System.Drawing.Point(228, 478);
             this.lblHtmlPath.Name = "lblHtmlPath";
-            this.lblHtmlPath.Size = new System.Drawing.Size(486, 17);
+            this.lblHtmlPath.Size = new System.Drawing.Size(262, 17);
             this.lblHtmlPath.TabIndex = 1;
             this.lblHtmlPath.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblContentPath
             // 
             this.lblContentPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblContentPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.lblContentPath.Location = new System.Drawing.Point(139, 306);
+            this.lblContentPath.ForeColor = System.Drawing.Color.White;
+            this.lblContentPath.Location = new System.Drawing.Point(238, 306);
             this.lblContentPath.Name = "lblContentPath";
-            this.lblContentPath.Size = new System.Drawing.Size(332, 17);
+            this.lblContentPath.Size = new System.Drawing.Size(233, 17);
             this.lblContentPath.TabIndex = 1;
             this.lblContentPath.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblContentPath.Visible = false;
@@ -938,10 +987,11 @@
             this.panel1.Controls.Add(this.chkPdf);
             this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Controls.Add(this.chkHtmltemplate);
+            this.panel1.Controls.Add(this.chkIsBottomBody);
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
             this.panel1.Location = new System.Drawing.Point(1, 348);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(147, 147);
+            this.panel1.Size = new System.Drawing.Size(168, 167);
             this.panel1.TabIndex = 42;
             // 
             // chkHtmlToImage
@@ -949,12 +999,13 @@
             this.chkHtmlToImage.AutoSize = true;
             this.chkHtmlToImage.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
             this.chkHtmlToImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkHtmlToImage.Location = new System.Drawing.Point(4, 86);
+            this.chkHtmlToImage.Location = new System.Drawing.Point(4, 111);
             this.chkHtmlToImage.Name = "chkHtmlToImage";
             this.chkHtmlToImage.Size = new System.Drawing.Size(130, 23);
             this.chkHtmlToImage.TabIndex = 41;
             this.chkHtmlToImage.Text = "html to image ";
             this.chkHtmlToImage.UseVisualStyleBackColor = true;
+            this.chkHtmlToImage.CheckedChanged += new System.EventHandler(this.chkHtmlToImage_CheckedChanged);
             // 
             // chkHtmlToImageToPdf
             // 
@@ -969,6 +1020,7 @@
             this.chkHtmlToImageToPdf.TabStop = true;
             this.chkHtmlToImageToPdf.Text = "html/Img \r\nto pdf";
             this.chkHtmlToImageToPdf.UseVisualStyleBackColor = true;
+            this.chkHtmlToImageToPdf.CheckedChanged += new System.EventHandler(this.chkHtmlToImageToPdf_CheckedChanged);
             // 
             // chkPdf
             // 
@@ -981,6 +1033,7 @@
             this.chkPdf.TabIndex = 41;
             this.chkPdf.Text = "html to pdf";
             this.chkPdf.UseVisualStyleBackColor = true;
+            this.chkPdf.CheckedChanged += new System.EventHandler(this.chkPdf_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -993,18 +1046,34 @@
             this.radioButton1.TabIndex = 41;
             this.radioButton1.Text = "None";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // chkHtmltemplate
             // 
             this.chkHtmltemplate.AutoSize = true;
             this.chkHtmltemplate.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
             this.chkHtmltemplate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkHtmltemplate.Location = new System.Drawing.Point(3, 109);
+            this.chkHtmltemplate.Location = new System.Drawing.Point(3, 88);
             this.chkHtmltemplate.Name = "chkHtmltemplate";
             this.chkHtmltemplate.Size = new System.Drawing.Size(127, 23);
             this.chkHtmltemplate.TabIndex = 41;
             this.chkHtmltemplate.Text = "html template";
             this.chkHtmltemplate.UseVisualStyleBackColor = true;
+            this.chkHtmltemplate.CheckedChanged += new System.EventHandler(this.chkHtmltemplate_CheckedChanged);
+            // 
+            // chkIsBottomBody
+            // 
+            this.chkIsBottomBody.AutoSize = true;
+            this.chkIsBottomBody.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkIsBottomBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.chkIsBottomBody.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkIsBottomBody.Location = new System.Drawing.Point(4, 134);
+            this.chkIsBottomBody.Name = "chkIsBottomBody";
+            this.chkIsBottomBody.Size = new System.Drawing.Size(138, 21);
+            this.chkIsBottomBody.TabIndex = 8;
+            this.chkIsBottomBody.Text = "Show In Bottom";
+            this.chkIsBottomBody.UseVisualStyleBackColor = true;
+            this.chkIsBottomBody.Visible = false;
             // 
             // chkRandomContent
             // 
@@ -1141,49 +1210,48 @@
             this.dgvEmailList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.dgvEmailList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvEmailList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmailList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmailList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvEmailList.ColumnHeadersHeight = 26;
             this.dgvEmailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvEmailList.ColumnHeadersVisible = false;
             this.dgvEmailList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Email,
             this.btn});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEmailList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEmailList.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvEmailList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmailList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.dgvEmailList.Location = new System.Drawing.Point(0, 0);
             this.dgvEmailList.Name = "dgvEmailList";
             this.dgvEmailList.ReadOnly = true;
             this.dgvEmailList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmailList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmailList.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvEmailList.RowHeadersVisible = false;
             this.dgvEmailList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvEmailList.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.dgvEmailList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvEmailList.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvEmailList.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DarkGray;
-            this.dgvEmailList.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvEmailList.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmailList.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvEmailList.RowTemplate.Height = 26;
             this.dgvEmailList.RowTemplate.ReadOnly = true;
@@ -1308,9 +1376,9 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
             this.label13.Location = new System.Drawing.Point(255, 3);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(466, 15);
+            this.label13.Size = new System.Drawing.Size(520, 15);
             this.label13.TabIndex = 1;
-            this.label13.Text = "TAGS: #EMAIL#, #RANDOM# , #NUMBER#, #INVOICE#, #LETTERS#      ";
+            this.label13.Text = "TAGS: #EMAIL#, #RANDOM# , #NUMBER#,  #INVOICE#, #LETTERS# , #KEY#     ";
             this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
             // lblClose
@@ -1333,36 +1401,7 @@
             this.chkLogFolderSelect.Name = "chkLogFolderSelect";
             this.chkLogFolderSelect.Size = new System.Drawing.Size(104, 24);
             this.chkLogFolderSelect.TabIndex = 4;
-            // 
-            // chkRandomMap
-            // 
-            this.chkRandomMap.AutoSize = true;
-            this.chkRandomMap.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkRandomMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkRandomMap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkRandomMap.Location = new System.Drawing.Point(485, 114);
-            this.chkRandomMap.Name = "chkRandomMap";
-            this.chkRandomMap.Size = new System.Drawing.Size(121, 21);
-            this.chkRandomMap.TabIndex = 8;
-            this.chkRandomMap.Text = "Random Map";
-            this.chkRandomMap.UseVisualStyleBackColor = true;
-            this.chkRandomMap.CheckedChanged += new System.EventHandler(this.chkAttachment_CheckedChanged);
-            // 
-            // chkEnableSSL
-            // 
-            this.chkEnableSSL.AutoSize = true;
-            this.chkEnableSSL.Checked = true;
-            this.chkEnableSSL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEnableSSL.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkEnableSSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkEnableSSL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkEnableSSL.Location = new System.Drawing.Point(23, 253);
-            this.chkEnableSSL.Name = "chkEnableSSL";
-            this.chkEnableSSL.Size = new System.Drawing.Size(106, 21);
-            this.chkEnableSSL.TabIndex = 8;
-            this.chkEnableSSL.Text = "EnableSSL";
-            this.chkEnableSSL.UseVisualStyleBackColor = true;
-            this.chkEnableSSL.CheckedChanged += new System.EventHandler(this.chkAttachment_CheckedChanged);
+            this.chkLogFolderSelect.Visible = false;
             // 
             // task1
             // 
@@ -1385,6 +1424,7 @@
             this.Enter += new System.EventHandler(this.task1_Enter);
             this.grpSendingOptions.ResumeLayout(false);
             this.grpSendingOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRandomMapValue)).EndInit();
             this.pnlBottom.ResumeLayout(false);
             this.pnlBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRandomNameSubjectChanger)).EndInit();
@@ -1439,14 +1479,12 @@
         private System.Windows.Forms.NumericUpDown txtDelay;
 
         private System.Windows.Forms.CheckBox chkAttachment;
-        private System.Windows.Forms.RichTextBox txtMessage;
         private System.Windows.Forms.Button btnSendEnail;
         private System.Windows.Forms.Panel pnlAttach;
         private System.Windows.Forms.Label lblMsg;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox txtCredentialPath;
         private System.Windows.Forms.CheckBox chkRandomAtthmentName;
-        private System.Windows.Forms.RichTextBox txtMessageHtml;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn btn;
@@ -1508,5 +1546,9 @@
         private System.Windows.Forms.CheckBox chkSubjectFaker;
         private System.Windows.Forms.CheckBox chkRandomMap;
         private System.Windows.Forms.CheckBox chkEnableSSL;
+        private System.Windows.Forms.CheckBox chkIsBottomBody;
+        private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.TextBox txtMessageHtml;
+        private System.Windows.Forms.NumericUpDown txtRandomMapValue;
     }
 }

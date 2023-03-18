@@ -32,6 +32,7 @@ namespace EmailBOT.Tasks
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCredentials));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblClose = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -93,9 +94,9 @@ namespace EmailBOT.Tasks
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(3, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(202, 28);
+            this.lblTitle.Size = new System.Drawing.Size(159, 28);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Add New Credential";
+            this.lblTitle.Text = "Add New SMTP";
             // 
             // panel2
             // 
@@ -329,6 +330,7 @@ namespace EmailBOT.Tasks
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCredentials";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "abc";

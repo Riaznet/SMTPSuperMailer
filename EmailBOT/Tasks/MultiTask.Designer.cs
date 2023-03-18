@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultiTask));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -79,6 +79,18 @@
             this.btnReloadData = new System.Windows.Forms.Button();
             this.btnAddNewCredential = new System.Windows.Forms.Button();
             this.dgvList = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SenderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Credentials = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subjects = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contents = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hosts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ports = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Passwords = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tHome = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblTotalFailed = new System.Windows.Forms.Label();
@@ -101,6 +113,14 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblDownloadFormat = new System.Windows.Forms.Label();
             this.dgvUploadSender = new System.Windows.Forms.DataGridView();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Names = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtFileName = new System.Windows.Forms.TextBox();
             this.btnChoose = new System.Windows.Forms.Button();
             this.lblUploadToServer = new System.Windows.Forms.Label();
@@ -132,26 +152,6 @@
             this.lblIsDemo = new System.Windows.Forms.Label();
             this.ValidKeyChecker = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Names = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SenderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credentials = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subjects = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hosts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ports = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Passwords = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -773,6 +773,112 @@
             this.dgvList.TabIndex = 132;
             this.dgvList.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_CellMouseUp);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // SL
+            // 
+            this.SL.DataPropertyName = "SL";
+            this.SL.FillWeight = 20F;
+            this.SL.HeaderText = "SL";
+            this.SL.Name = "SL";
+            this.SL.ReadOnly = true;
+            this.SL.Width = 50;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.FillWeight = 60F;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Visible = false;
+            // 
+            // SenderId
+            // 
+            this.SenderId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SenderId.DataPropertyName = "SenderId";
+            this.SenderId.HeaderText = "Sender Email";
+            this.SenderId.Name = "SenderId";
+            this.SenderId.ReadOnly = true;
+            this.SenderId.Width = 150;
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.name.DataPropertyName = "Name";
+            this.name.FillWeight = 90F;
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 150;
+            // 
+            // Credentials
+            // 
+            this.Credentials.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Credentials.DataPropertyName = "Credential";
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Credentials.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Credentials.HeaderText = "Credential";
+            this.Credentials.Name = "Credentials";
+            this.Credentials.ReadOnly = true;
+            this.Credentials.Visible = false;
+            this.Credentials.Width = 140;
+            // 
+            // Subjects
+            // 
+            this.Subjects.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Subjects.DataPropertyName = "Subject";
+            this.Subjects.HeaderText = "Subjects";
+            this.Subjects.Name = "Subjects";
+            this.Subjects.ReadOnly = true;
+            this.Subjects.Width = 140;
+            // 
+            // Contents
+            // 
+            this.Contents.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Contents.DataPropertyName = "Content";
+            this.Contents.FillWeight = 120F;
+            this.Contents.HeaderText = "Content";
+            this.Contents.Name = "Contents";
+            this.Contents.ReadOnly = true;
+            this.Contents.Width = 164;
+            // 
+            // Hosts
+            // 
+            this.Hosts.DataPropertyName = "Host";
+            this.Hosts.HeaderText = "Host";
+            this.Hosts.Name = "Hosts";
+            this.Hosts.ReadOnly = true;
+            // 
+            // Ports
+            // 
+            this.Ports.DataPropertyName = "Port";
+            this.Ports.HeaderText = "Ports";
+            this.Ports.Name = "Ports";
+            this.Ports.ReadOnly = true;
+            // 
+            // UserNames
+            // 
+            this.UserNames.DataPropertyName = "UserName";
+            this.UserNames.HeaderText = "UserName";
+            this.UserNames.Name = "UserNames";
+            this.UserNames.ReadOnly = true;
+            this.UserNames.Visible = false;
+            // 
+            // Passwords
+            // 
+            this.Passwords.DataPropertyName = "Password";
+            this.Passwords.HeaderText = "Password";
+            this.Passwords.Name = "Passwords";
+            this.Passwords.ReadOnly = true;
+            this.Passwords.Visible = false;
+            // 
             // tHome
             // 
             this.tHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
@@ -904,31 +1010,31 @@
             // 
             // chart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chart.Legends.Add(legend4);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(0, 0);
             this.chart.Name = "chart";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Total Mail";
-            series11.ChartArea = "ChartArea1";
-            series11.Legend = "Legend1";
-            series11.Name = "Total Sent";
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "Total Failed";
-            this.chart.Series.Add(series10);
-            this.chart.Series.Add(series11);
-            this.chart.Series.Add(series12);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Total Mail";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Total Sent";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Total Failed";
+            this.chart.Series.Add(series1);
+            this.chart.Series.Add(series2);
+            this.chart.Series.Add(series3);
             this.chart.Size = new System.Drawing.Size(857, 373);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart2";
-            title4.Name = "asdsdsadsad";
-            title4.Text = "Bar Chart of Day Wise Value";
-            this.chart.Titles.Add(title4);
+            title1.Name = "asdsdsadsad";
+            title1.Text = "Bar Chart of Day Wise Value";
+            this.chart.Titles.Add(title1);
             // 
             // panel9
             // 
@@ -1047,14 +1153,14 @@
             this.dgvUploadSender.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUploadSender.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvUploadSender.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUploadSender.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUploadSender.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUploadSender.ColumnHeadersHeight = 25;
             this.dgvUploadSender.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Email,
@@ -1084,6 +1190,66 @@
             this.dgvUploadSender.Size = new System.Drawing.Size(830, 470);
             this.dgvUploadSender.TabIndex = 111;
             this.dgvUploadSender.TabStop = false;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Emails";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Names
+            // 
+            this.Names.DataPropertyName = "Name";
+            this.Names.FillWeight = 80F;
+            this.Names.HeaderText = "Name";
+            this.Names.Name = "Names";
+            this.Names.ReadOnly = true;
+            // 
+            // Subject
+            // 
+            this.Subject.DataPropertyName = "Subject";
+            this.Subject.HeaderText = "Subject";
+            this.Subject.Name = "Subject";
+            this.Subject.ReadOnly = true;
+            // 
+            // Content
+            // 
+            this.Content.DataPropertyName = "Content";
+            this.Content.FillWeight = 150F;
+            this.Content.HeaderText = "Content";
+            this.Content.Name = "Content";
+            this.Content.ReadOnly = true;
+            // 
+            // Host
+            // 
+            this.Host.DataPropertyName = "Host";
+            this.Host.HeaderText = "Host";
+            this.Host.Name = "Host";
+            this.Host.ReadOnly = true;
+            // 
+            // Port
+            // 
+            this.Port.DataPropertyName = "Port";
+            this.Port.HeaderText = "Port";
+            this.Port.Name = "Port";
+            this.Port.ReadOnly = true;
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "UserName";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Visible = false;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
             // 
             // TxtFileName
             // 
@@ -1287,7 +1453,7 @@
             // 
             this.addCredentialsToolStripMenuItem.Name = "addCredentialsToolStripMenuItem";
             this.addCredentialsToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.addCredentialsToolStripMenuItem.Text = "Add Credentials";
+            this.addCredentialsToolStripMenuItem.Text = "Add SMTP";
             this.addCredentialsToolStripMenuItem.Click += new System.EventHandler(this.addCredentialsToolStripMenuItem_Click);
             // 
             // txtGeneratorToolStripMenuItem
@@ -1431,172 +1597,6 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Emails";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // Names
-            // 
-            this.Names.DataPropertyName = "Name";
-            this.Names.FillWeight = 80F;
-            this.Names.HeaderText = "Name";
-            this.Names.Name = "Names";
-            this.Names.ReadOnly = true;
-            // 
-            // Subject
-            // 
-            this.Subject.DataPropertyName = "Subject";
-            this.Subject.HeaderText = "Subject";
-            this.Subject.Name = "Subject";
-            this.Subject.ReadOnly = true;
-            // 
-            // Content
-            // 
-            this.Content.DataPropertyName = "Content";
-            this.Content.FillWeight = 150F;
-            this.Content.HeaderText = "Content";
-            this.Content.Name = "Content";
-            this.Content.ReadOnly = true;
-            // 
-            // Host
-            // 
-            this.Host.DataPropertyName = "Host";
-            this.Host.HeaderText = "Host";
-            this.Host.Name = "Host";
-            this.Host.ReadOnly = true;
-            // 
-            // Port
-            // 
-            this.Port.DataPropertyName = "Port";
-            this.Port.HeaderText = "Port";
-            this.Port.Name = "Port";
-            this.Port.ReadOnly = true;
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "UserName";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Visible = false;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Visible = false;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // SL
-            // 
-            this.SL.DataPropertyName = "SL";
-            this.SL.FillWeight = 20F;
-            this.SL.HeaderText = "SL";
-            this.SL.Name = "SL";
-            this.SL.ReadOnly = true;
-            this.SL.Width = 50;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.FillWeight = 60F;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Visible = false;
-            // 
-            // SenderId
-            // 
-            this.SenderId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SenderId.DataPropertyName = "SenderId";
-            this.SenderId.HeaderText = "Sender Email";
-            this.SenderId.Name = "SenderId";
-            this.SenderId.ReadOnly = true;
-            this.SenderId.Width = 150;
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.name.DataPropertyName = "Name";
-            this.name.FillWeight = 90F;
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Width = 150;
-            // 
-            // Credentials
-            // 
-            this.Credentials.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Credentials.DataPropertyName = "Credential";
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Credentials.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Credentials.HeaderText = "Credential";
-            this.Credentials.Name = "Credentials";
-            this.Credentials.ReadOnly = true;
-            this.Credentials.Visible = false;
-            this.Credentials.Width = 140;
-            // 
-            // Subjects
-            // 
-            this.Subjects.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Subjects.DataPropertyName = "Subject";
-            this.Subjects.HeaderText = "Subjects";
-            this.Subjects.Name = "Subjects";
-            this.Subjects.ReadOnly = true;
-            this.Subjects.Width = 140;
-            // 
-            // Contents
-            // 
-            this.Contents.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Contents.DataPropertyName = "Content";
-            this.Contents.FillWeight = 120F;
-            this.Contents.HeaderText = "Content";
-            this.Contents.Name = "Contents";
-            this.Contents.ReadOnly = true;
-            this.Contents.Width = 164;
-            // 
-            // Hosts
-            // 
-            this.Hosts.DataPropertyName = "Host";
-            this.Hosts.HeaderText = "Host";
-            this.Hosts.Name = "Hosts";
-            this.Hosts.ReadOnly = true;
-            // 
-            // Ports
-            // 
-            this.Ports.DataPropertyName = "Port";
-            this.Ports.HeaderText = "Ports";
-            this.Ports.Name = "Ports";
-            this.Ports.ReadOnly = true;
-            // 
-            // UserNames
-            // 
-            this.UserNames.DataPropertyName = "UserName";
-            this.UserNames.HeaderText = "UserName";
-            this.UserNames.Name = "UserNames";
-            this.UserNames.ReadOnly = true;
-            this.UserNames.Visible = false;
-            // 
-            // Passwords
-            // 
-            this.Passwords.DataPropertyName = "Password";
-            this.Passwords.HeaderText = "Password";
-            this.Passwords.Name = "Passwords";
-            this.Passwords.ReadOnly = true;
-            this.Passwords.Visible = false;
-            // 
             // MultiTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1616,6 +1616,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblIsDemo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MultiTask";
             this.Padding = new System.Windows.Forms.Padding(5, 20, 5, 15);

@@ -162,6 +162,9 @@ Example : if checked #Delay after send each mail, then delay occurs after send e
         kwQMKyOxBj4AAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="label13.ToolTip" xml:space="preserve">
     <value>Use tags to content (Text/Plain) or Content (html) ,Its change value randomly 
 Example : Hello , your invoice number is #INVOICE# 

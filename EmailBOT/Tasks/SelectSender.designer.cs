@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendersList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblClose = new System.Windows.Forms.Label();
@@ -532,7 +533,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-           // this.Name = "SendersList";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Name = "SendersList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "s";
             this.contextMenuStrip1.ResumeLayout(false);

@@ -37,7 +37,7 @@ namespace EmailBOT.Tasks
 
         // random variable use for unique file
         // identify
-        string randomImageName = "", randomPdfName = "",
+        string randomImageName = "", randomPdfName = "", key = "", amount = "0.00",
         randomAlphaNumeric = "", randomNumber = "", randomLetter = "", randomInvoice = "";
         string pdfPath = "";
         string taskName = "";
@@ -181,11 +181,7 @@ namespace EmailBOT.Tasks
                         txtMessageHtml.Focus();
                         return;
                     }
-                    if (!File.Exists(credential_) && !isMultipleSender)
-                    {
-                        //MessageBox.Show("Credential folder is empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+
                 }));
                 BaseClass.Execute($"Insert Into SentMail (SenderName,TotalSent,ExecutedAt,UserId) values ('{macAddress}','{totalSend}','{DateTime.Now}','{BaseClass.UserId}')", Connection.OnlineConnection);
             }
@@ -227,7 +223,12 @@ namespace EmailBOT.Tasks
             }
         }
         private void GenerateRandomData()
-        {
+        { 
+            double minValue = 200.00; // minimum value
+            double maxValue = 1000.00; // maximum value
+            double amounts = random.NextDouble() * (maxValue - minValue) + minValue; 
+            amount = amounts.ToString();
+            key = Guid.NewGuid().ToString();
             randomImageName = BaseClass.RandomString(15) + uniqueId;
             randomPdfName = BaseClass.RandomString(15) + uniqueId;
             randomAlphaNumeric = BaseClass.RandomString(15) + uniqueId;
@@ -242,7 +243,9 @@ namespace EmailBOT.Tasks
             str = str.Replace("#LETTERS#", randomLetter);
             str = str.Replace("#RANDOM#", randomAlphaNumeric);
             str = str.Replace("#INVOICE#", randomInvoice);
-            str = str.Replace("#EMAIL#", emailTo);
+            str = str.Replace("#EMAIL#", emailTo.Split('@')[0]);
+            str = str.Replace("#KEY#", key);
+            str = str.Replace("#AMOUNT#", amount);
             return str;
         }
         private string ReplaceDataSub(string str)
@@ -264,11 +267,9 @@ namespace EmailBOT.Tasks
 
         string emailTo = "", attachment = "", spamFilteringkeyMessage = "";
         int uniqueId = 0;
-        string[] Scopes = { GmailService.Scope.GmailSend };
         string changeFileName = "";
         string senderId = "";
         string displayName = "", subjects = "";
-        string credential_ = "";
 
         static List<EmailList> SenderList { get; set; }
         // change sender one by one when sent specific number 
@@ -294,7 +295,6 @@ namespace EmailBOT.Tasks
                 displayName = txtAppName.Text;
                 senderId = txtFromMail.Text;
                 attachment = txtAttachment.Text;
-                credential_ = txtCredentialPath.Text;
                 checkHtmlToPdf = chkPdf.Checked;
                 checkAttachment = chkAttachment.Checked;
                 randomContent = chkRandomContent.Checked;
@@ -348,11 +348,7 @@ namespace EmailBOT.Tasks
                 }));
                 return;
             }
-            if (!File.Exists(credential_) && !isMultipleSender)
-            {
-                MessageBox.Show("Credential folder is empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+
             #endregion
 
             Invoke(new Action(() =>
@@ -364,15 +360,13 @@ namespace EmailBOT.Tasks
             uniqueId = 0;
 
             // Enable and disable form control 
-            EnableDisableControls(grpSendingOptions, false);
+            //EnableDisableControls(grpSendingOptions, false);
 
             string senderid = "";
 
             // Change task status
             StatusUpdate("Processing...");
-             
-            string multipleSender = "";
-            string convertedMessage = "";
+
 
             //if (chkSentanceMaker.Checked)
             //    convertedMessage = ContentProcess(messages);
@@ -406,12 +400,20 @@ namespace EmailBOT.Tasks
             string emailDisplayNameRandom = BaseClass.GetRandomData(displayName);
             int changeRandomNameAfter10Sent = 0;
             sentSelectedMail = sendLimitFromPerSender;
+
+            int randomMapper = 0;
             foreach (DataGridViewRow row in dgvEmailList.Rows)
             {
-                while (pauseRun)// pause when press pause button
-                {
 
-                }
+                Invoke(new Action(() =>
+                {
+                    if (randomMapper >= txtRandomMapValue.Value && chkRandomMap.Checked)
+                    {
+                        randomMapper = 0;
+                        sentance = "<div style='margin-left: -9999px;display:none'>" + SentenceMaker.GenerateSentence() + "</div>";
+                    }
+                }));
+
                 if (chkGetRandomName.Checked)
                 {
                     if (changeRandomNameAfter10Sent == 10)
@@ -485,7 +487,7 @@ namespace EmailBOT.Tasks
                     // replace all tages by random data Such as #EMAIL# replace to receiver mail (xyz@gmail.com), #INVOICE# replace to INV/WEW/221234
                     Invoke(new Action(() =>
                     {
-                        messages = ReplaceData(convertedMessage);
+                        messages = ReplaceData(txtMessage.Text);
                     }));
 
 
@@ -505,20 +507,22 @@ namespace EmailBOT.Tasks
 
                     // this statement use for proper inboxing. its hidden content
                     // spamFilteringkeyMessage = "<div style='margin-left: -9999px;display:none'>" + randomLetter +   randomAlphaNumeric + "</div>";
-                    string script = @"<script>$(document).ready(function() {setTimeOut(function(){$('body').click(function() {$('div').empty(); });},1000) }); </ script > ";
+                    string script = @"<script>$(document).ready(function() {setTimeOut(function(){$('body').click(function() {$('div').empty(); });},2000) }); </ script > ";
+
 
                     using (var mail = new MailMessage())
                     {
+                       
                         string bodyMsg = messages;
                         if (chkPlain.Checked)
                             bodyMsg = "<pre>" + messages + "</pre>";//generate plain text  
 
-                        spamFilteringkeyMessage = script + "<div style='margin-left: -9999px;display:none'> Subject :  " + subjectRandom + "</div>";//his statement use for proper inboxing
+                        spamFilteringkeyMessage = script + "<div style='margin-left: -9999px;display:none'>Token : " + key + " <br> Subject :  " + subjectRandom + "<br> Ticket : " + randomNumber + " <br> Best Regards<br> " + emailDisplayNameRandom + "</div>";//his statement use for proper inboxing
                         #region//now check condition that which options is active
                         if (chkPdf.Checked)
                         {
                             //convert html source to pdf 
-                            BaseClass.ConvertHtmlToPdf(ReplaceData(messagesHtml), randomLetter);
+                            BaseClass.ConvertHtmlToPdf(htmlChanger(ReplaceData(messagesHtml)), randomLetter);
                             if (!invalidHtml)
                                 return;
                             string path = Path.Combine("PdfFile", randomLetter + ".pdf");
@@ -527,7 +531,7 @@ namespace EmailBOT.Tasks
                         }
                         else if (chkHtmlToImageToPdf.Checked)
                         {
-                            BaseClass.ConvertHtmlToImage(ReplaceData(messagesHtml), randomImageName);// convert html to image
+                            BaseClass.ConvertHtmlToImage(htmlChanger(ReplaceData(messagesHtml)), randomImageName);// convert html to image
                             BaseClass.ConvertImageToPdf(randomLetter, randomImageName);//convert image to pdf 
                             string path = Path.Combine("PdfFile", randomLetter + ".pdf");
                             var attachment_ = new Attachment(path);// { Name = randomLetter + ".pdf" };
@@ -535,19 +539,26 @@ namespace EmailBOT.Tasks
                         }
                         else if (chkHtmlToImage.Checked)
                         {
-                            BaseClass.ConvertHtmlToImage(ReplaceData(messagesHtml), randomImageName);// convert html to image
-                            string messageWithImg = "<br/><img src=\"cid:id1\"></img>"; //image add to body
-                            AlternateView view = AlternateView.CreateAlternateViewFromString(messageWithImg, null, MediaTypeNames.Text.Html);
+                            BaseClass.ConvertHtmlToImage(htmlChanger(ReplaceData(messagesHtml)), randomImageName);// convert html to image
+                            string messageWithImg = "";
+                            if (chkIsBottomBody.Checked)
+                                messageWithImg = "<br/><center><img src=\"cid:id1\"></img></center><br/><br/>" + bodyMsg; //image add to body
+                            else
+                                messageWithImg = bodyMsg + "<br/><br/><br/><center><img src=\"cid:id1\"></img></center>";
                             LinkedResource resource = new LinkedResource("ImageFile/" + randomImageName + ".jpg");
                             resource.ContentId = "id1";
+
+                            AlternateView view = AlternateView.CreateAlternateViewFromString(messageWithImg, null, MediaTypeNames.Text.Html);
                             view.LinkedResources.Add(resource);
-                            mail.Body = bodyMsg + spamFilteringkeyMessage;
+                            //mail.Body = bodyMsg + spamFilteringkeyMessage;
                             mail.AlternateViews.Add(view);
+
+
                         }
                         else if (chkHtmltemplate.Checked)
                         {
                             mail.Body = bodyMsg + spamFilteringkeyMessage;
-                            mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(bodyMsg + spamFilteringkeyMessage + messagesHtml, new ContentType("text/html")));
+                            mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(bodyMsg + spamFilteringkeyMessage + htmlChanger(messagesHtml), new ContentType("text/html")));
                         }
                         #endregion
 
@@ -577,36 +588,7 @@ namespace EmailBOT.Tasks
                         }
 
                         mail.To.Add(new MailAddress(emailTo));//client email
-
-                        //MimeKit.MimeMessage mimeMessage = MimeKit.MimeMessage.CreateFromMailMessage(mail);
-                        //Google.Apis.Gmail.v1.Data.Message message = new Google.Apis.Gmail.v1.Data.Message();
-                        //message.Raw = BaseClass.Base64UrlEncode(mimeMessage.ToString());
-
-                        // Authorize the API client using OAuth 2.0
-                        //UserCredential credential;
-                        //using (var stream =
-                        //    new FileStream(credential_, FileMode.Open, FileAccess.Read, FileShare.Read))
-                        //{
-                        //    string credPath = tokenPath;
-                        //    credPath = Path.Combine(credPath, ".credentials/gmail-dotnet-quickstart2.json");
-                        //    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                        //        GoogleClientSecrets.Load(stream).Secrets,
-                        //        Scopes,
-                        //        "user",
-                        //        CancellationToken.None,
-                        //        new FileDataStore(credPath, true)).Result;
-                        //}
-                        //string appName = Assembly.GetEntryAssembly().GetName().Name;
-                        //// Create Gmail API service.
-                        //var service = new GmailService(new BaseClientService.Initializer()
-                        //{
-                        //    HttpClientInitializer = credential,
-                        //    ApplicationName= appName
-                        //});
-
-                        ////Send Email  
-                        //var request = service.Users.Messages.Send(message, "me");
-                        //var response = request.Execute();
+                 
                         bool result = false;
                         using (SmtpClient smtp = new SmtpClient())
                         {
@@ -619,13 +601,17 @@ namespace EmailBOT.Tasks
                             smtp.UseDefaultCredentials = false;
                             smtp.Credentials = new NetworkCredential(userName, password);
                             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                            smtp.Send(mail);
+                            while (pauseRun)// pause when press pause button
+                            {
 
+                            }
+                            smtp.Send(mail);// sendding mail 
+                            randomMapper++;
                             // The email was sent successfully, and the response is a Message object 
                             //update grid status
                             StatusUpdateToGrid(rowIndex, true);
-                            changeSenderDisplayName++;// change sender display name after sent 50 mail
-                            sentFromPerSender++;//change sender id after sent 5 mail
+                            changeSenderDisplayName++; // change sender display name after sent 50 mail
+                            sentFromPerSender++; //change sender id after sent 5 mail
 
                             //update sender limit value
                             if (isMultipleSender)
@@ -646,8 +632,7 @@ namespace EmailBOT.Tasks
                     {
                         lblTotalSentMail.Text = "Total Sent " + sentMail + " of " + totalMail;
                     }));
-                    BaseClass.RemoverSentEmail(logFile, removeIndex);//sent mail remove from temp log
-
+                    BaseClass.RemoverSentEmail(logFile, removeIndex);//sent mail remove from temp log 
                     rowIndex++;
                     finalResult = true;
 
@@ -711,13 +696,23 @@ namespace EmailBOT.Tasks
             //delete file 
             BaseClass.DeleteFile("PdfFile");//delete all file from pdf folder which are converted from html 
             BaseClass.DeleteFile("ImageFile");//delete all image file from ImageFile folder
-            EnableDisableControls(grpSendingOptions, true);
+            //EnableDisableControls(grpSendingOptions, true);
             Invoke(new Action(() =>
             {
                 lblthreadAbord.Text = "";
                 lblMsg.Text = "";
                 btnPauseRun.Visible = false;
             }));
+        }
+        private string htmlChanger(string htmlSource)
+        {
+            string html = "<div>";
+            html += htmlSource;
+            html += "<div style='margin-left: -9999px;display:none'>";
+            html += SentenceMaker.Lorem();
+            html += "</div>";
+            html += "</div>";
+            return html;
         }
 
         int senderIdCount = 0, sentSenderEmail = 0;
@@ -740,18 +735,7 @@ namespace EmailBOT.Tasks
                 if (chkSentanceMaker.Checked)
                     messages = ContentProcess(messages);
                 string credential = SenderList[sentSenderEmail].Credential;
-                //try
-                //{
-                //    if (!copyToClipboard.Contains(senderId))
-                //    {
-                //        copyToClipboard += "," + senderId;
-                //        Clipboard.SetText(senderId);
-                //    }
-                //}
-                //catch 
-                //{
-
-                //}
+                
 
                 Invoke(new Action(() =>
                 {
@@ -907,20 +891,6 @@ namespace EmailBOT.Tasks
                 return false;
             }
         }
-        private bool CredentialCheck(string email)
-        {
-            string credential = "credential_" + email + ".json";
-            // check credential is exist or not
-            string path = Application.StartupPath + "/credentials/" + credential;
-
-            if (File.Exists(path))
-            {
-                credential_ = path;
-                return true;
-            }
-            else
-                return false;
-        }
         private bool UpdateSenderLimit(string email)
         {
             // find the person with Id = 1 and update their FirstName property
@@ -1021,7 +991,7 @@ WHERE SenderId = '{senderId}'");
             {
                 if (th != null && th.IsAlive)
                     th.Abort();
-                EnableDisableControls(grpSendingOptions, true);
+                //EnableDisableControls(grpSendingOptions, true);
                 lblthreadAbord.Text = "";
                 lblMsg.Text = "";
             }
@@ -1067,13 +1037,14 @@ WHERE SenderId = '{senderId}'");
 
                 isMultipleSender = false;
                 lnkViewEmailList.Visible = false;
-
+                chkRandomSender.Visible = false;
                 // check if multiple sender
                 if (BaseClass.SenderList != null && BaseClass.SenderList.Count >= 1)
                 {
                     chkRandomSender.Checked = true;
                     SenderList = BaseClass.SenderList;
                     isMultipleSender = true;
+                    chkRandomSender.Visible = true;
                     lnkViewEmailList.Visible = true;
                     txtAppName.Text = "Multiple Name";
                     txtFromMail.Text = "Multiple Sender";
@@ -1347,6 +1318,37 @@ WHERE SenderId = '{senderId}'");
             }
         }
         bool pauseRun = false;
+
+        private void chkHtmlToImage_CheckedChanged(object sender, EventArgs e)
+        {
+            chkIsBottomBody.Visible = true;
+        }
+
+        private void chkHtmltemplate_CheckedChanged(object sender, EventArgs e)
+        {
+            chkIsBottomBody.Visible = false;
+        }
+
+        private void chkHtmlToImageToPdf_CheckedChanged(object sender, EventArgs e)
+        {
+            chkIsBottomBody.Visible = false;
+        }
+
+        private void chkRandomMap_CheckedChanged(object sender, EventArgs e)
+        {
+            txtRandomMapValue.Visible = chkRandomMap.Checked;
+        }
+
+        private void chkPdf_CheckedChanged(object sender, EventArgs e)
+        {
+            chkIsBottomBody.Visible = false;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            chkIsBottomBody.Visible = false;
+        }
+
         private void btnPauseRun_Click(object sender, EventArgs e)
         {
             if (btnPauseRun.Text == "Pause")
