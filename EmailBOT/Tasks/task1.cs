@@ -704,12 +704,20 @@ namespace EmailBOT.Tasks
                 btnPauseRun.Visible = false;
             }));
         }
+        int dummySelect = 0;
         private string htmlChanger(string htmlSource)
         {
+            string dummy = SentenceMaker.Lorem();
             string html = "<div>";
             html += htmlSource;
             html += "<div style='margin-left: -9999px;display:none'>";
-            html += SentenceMaker.Lorem();
+            html += dummy;
+            if (dummySelect == 2)
+            {
+                html += dummy;
+                dummySelect = 0;
+            }
+            dummySelect++;
             html += "</div>";
             html += "</div>";
             return html;

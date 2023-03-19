@@ -17,7 +17,7 @@ namespace EmailBOT
         [STAThread]
         static void Main()
         {
-            Connection.OnlineConnection = new SqlConnectionStringBuilder { DataSource = "server5.hostever.com,14335", InitialCatalog = "artmailerdb", UserID = "artmailer", Password = "riaz.tarin@123%rr", MultipleActiveResultSets = true, MinPoolSize = 1, MaxPoolSize = 2000 }.ToString();
+            Connection.OnlineConnection = new SqlConnectionStringBuilder { DataSource = "server5.hostever.com,14335", InitialCatalog = "artmailerdb", UserID = "artmailer", Password = "riaz.tahmid@123%rr", MultipleActiveResultSets = true, MinPoolSize = 1, MaxPoolSize = 2000 }.ToString();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

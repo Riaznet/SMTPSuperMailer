@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtEmailId = new System.Windows.Forms.TextBox();
@@ -40,11 +41,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblClose = new System.Windows.Forms.Label();
             this.chkRemember = new System.Windows.Forms.CheckBox();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.sssTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -54,6 +57,7 @@
             // txtEmailId
             // 
             this.txtEmailId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmailId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.txtEmailId.Location = new System.Drawing.Point(103, 47);
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(213, 23);
@@ -62,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.label1.Location = new System.Drawing.Point(44, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
@@ -72,6 +76,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.txtPassword.Location = new System.Drawing.Point(103, 76);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -81,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.label2.Location = new System.Drawing.Point(44, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
@@ -91,6 +96,7 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.btnLogin.Location = new System.Drawing.Point(260, 104);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(56, 23);
@@ -101,7 +107,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 150);
             this.panel2.Name = "panel2";
@@ -110,10 +116,10 @@
             // 
             // lblMsg
             // 
-            this.lblMsg.ForeColor = System.Drawing.Color.White;
-            this.lblMsg.Location = new System.Drawing.Point(103, 129);
+            this.lblMsg.ForeColor = System.Drawing.Color.Salmon;
+            this.lblMsg.Location = new System.Drawing.Point(128, 129);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(213, 13);
+            this.lblMsg.Size = new System.Drawing.Size(188, 13);
             this.lblMsg.TabIndex = 2;
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -121,7 +127,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.label4.Location = new System.Drawing.Point(9, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 25);
@@ -145,7 +151,7 @@
             // chkRemember
             // 
             this.chkRemember.AutoSize = true;
-            this.chkRemember.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.chkRemember.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.chkRemember.Location = new System.Drawing.Point(103, 105);
             this.chkRemember.Name = "chkRemember";
             this.chkRemember.Size = new System.Drawing.Size(86, 17);
@@ -153,6 +159,22 @@
             this.chkRemember.TabStop = false;
             this.chkRemember.Text = "Remember ?";
             this.chkRemember.UseVisualStyleBackColor = true;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.ForeColor = System.Drawing.Color.Black;
+            this.lblVersion.Location = new System.Drawing.Point(6, 129);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(22, 13);
+            this.lblVersion.TabIndex = 2;
+            this.lblVersion.Text = "0.0";
+            // 
+            // sssTimer
+            // 
+            this.sssTimer.Enabled = true;
+            this.sssTimer.Interval = 40000;
+            this.sssTimer.Tick += new System.EventHandler(this.sssTimer_Tick);
             // 
             // Login
             // 
@@ -166,6 +188,7 @@
             this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtEmailId);
@@ -196,5 +219,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblClose;
         private System.Windows.Forms.CheckBox chkRemember;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Timer sssTimer;
     }
 }
