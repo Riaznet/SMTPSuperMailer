@@ -12,7 +12,6 @@ namespace EmailBOT.Tasks
         public string Name { get; set; }
         public string Content { get; set; }
         public string Subject { get; set; }
-        public string Credential { get; set; }
         public int Limit { get; set; } 
         public int PerSenderLimit { get; set; }
         public int Port { get; set; }

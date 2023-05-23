@@ -88,7 +88,6 @@
             this.Subjects = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contents = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hosts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ports = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Passwords = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tHome = new System.Windows.Forms.TabPage();
@@ -113,14 +112,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblDownloadFormat = new System.Windows.Forms.Label();
             this.dgvUploadSender = new System.Windows.Forms.DataGridView();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Names = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtFileName = new System.Windows.Forms.TextBox();
             this.btnChoose = new System.Windows.Forms.Button();
             this.lblUploadToServer = new System.Windows.Forms.Label();
@@ -151,8 +142,16 @@
             this.lblHome = new System.Windows.Forms.Label();
             this.lblIsDemo = new System.Windows.Forms.Label();
             this.ValidKeyChecker = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.sssTimer = new System.Windows.Forms.Timer(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Names = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -199,7 +198,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.pnlbtnTask5);
             this.panel2.Controls.Add(this.pnlbtnTask4);
@@ -226,12 +225,12 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
             this.button1.ContextMenuStrip = this.contextCredential;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(7, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.button1.Name = "button1";
@@ -300,13 +299,13 @@
             // 
             // btnTask5
             // 
-            this.btnTask5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(150)))), ((int)(((byte)(104)))));
+            this.btnTask5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTask5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTask5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTask5.FlatAppearance.BorderSize = 0;
             this.btnTask5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTask5.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnTask5.ForeColor = System.Drawing.Color.OldLace;
+            this.btnTask5.ForeColor = System.Drawing.Color.Black;
             this.btnTask5.Location = new System.Drawing.Point(7, 0);
             this.btnTask5.Name = "btnTask5";
             this.btnTask5.Size = new System.Drawing.Size(116, 39);
@@ -346,13 +345,13 @@
             // 
             // btnTask4
             // 
-            this.btnTask4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(150)))), ((int)(((byte)(104)))));
+            this.btnTask4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTask4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTask4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTask4.FlatAppearance.BorderSize = 0;
             this.btnTask4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTask4.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnTask4.ForeColor = System.Drawing.Color.OldLace;
+            this.btnTask4.ForeColor = System.Drawing.Color.Black;
             this.btnTask4.Location = new System.Drawing.Point(7, 0);
             this.btnTask4.Name = "btnTask4";
             this.btnTask4.Size = new System.Drawing.Size(116, 39);
@@ -392,13 +391,13 @@
             // 
             // btnTask3
             // 
-            this.btnTask3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(150)))), ((int)(((byte)(104)))));
+            this.btnTask3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTask3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTask3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTask3.FlatAppearance.BorderSize = 0;
             this.btnTask3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTask3.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnTask3.ForeColor = System.Drawing.Color.OldLace;
+            this.btnTask3.ForeColor = System.Drawing.Color.Black;
             this.btnTask3.Location = new System.Drawing.Point(7, 0);
             this.btnTask3.Name = "btnTask3";
             this.btnTask3.Size = new System.Drawing.Size(116, 39);
@@ -428,7 +427,7 @@
             this.lblStatus2.Cursor = System.Windows.Forms.Cursors.No;
             this.lblStatus2.Font = new System.Drawing.Font("Arial", 9F);
             this.lblStatus2.ForeColor = System.Drawing.Color.Black;
-            this.lblStatus2.Location = new System.Drawing.Point(6, 26);
+            this.lblStatus2.Location = new System.Drawing.Point(7, 26);
             this.lblStatus2.Margin = new System.Windows.Forms.Padding(0);
             this.lblStatus2.Name = "lblStatus2";
             this.lblStatus2.Size = new System.Drawing.Size(116, 13);
@@ -438,13 +437,13 @@
             // 
             // btnTask2
             // 
-            this.btnTask2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(150)))), ((int)(((byte)(104)))));
+            this.btnTask2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTask2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTask2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTask2.FlatAppearance.BorderSize = 0;
             this.btnTask2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTask2.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnTask2.ForeColor = System.Drawing.Color.OldLace;
+            this.btnTask2.ForeColor = System.Drawing.Color.Black;
             this.btnTask2.Location = new System.Drawing.Point(7, 0);
             this.btnTask2.Name = "btnTask2";
             this.btnTask2.Size = new System.Drawing.Size(116, 39);
@@ -474,7 +473,7 @@
             this.lblStatus1.Cursor = System.Windows.Forms.Cursors.No;
             this.lblStatus1.Font = new System.Drawing.Font("Arial", 9F);
             this.lblStatus1.ForeColor = System.Drawing.Color.Black;
-            this.lblStatus1.Location = new System.Drawing.Point(6, 26);
+            this.lblStatus1.Location = new System.Drawing.Point(7, 26);
             this.lblStatus1.Margin = new System.Windows.Forms.Padding(0);
             this.lblStatus1.Name = "lblStatus1";
             this.lblStatus1.Size = new System.Drawing.Size(116, 13);
@@ -484,14 +483,14 @@
             // 
             // btnTask1
             // 
-            this.btnTask1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(150)))), ((int)(((byte)(104)))));
+            this.btnTask1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTask1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTask1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTask1.FlatAppearance.BorderColor = System.Drawing.Color.Honeydew;
             this.btnTask1.FlatAppearance.BorderSize = 0;
             this.btnTask1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTask1.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnTask1.ForeColor = System.Drawing.Color.OldLace;
+            this.btnTask1.ForeColor = System.Drawing.Color.Black;
             this.btnTask1.Location = new System.Drawing.Point(7, 0);
             this.btnTask1.Margin = new System.Windows.Forms.Padding(0);
             this.btnTask1.Name = "btnTask1";
@@ -753,7 +752,6 @@
             this.Subjects,
             this.Contents,
             this.Hosts,
-            this.Ports,
             this.UserNames,
             this.Passwords});
             this.dgvList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
@@ -789,7 +787,7 @@
             this.SL.HeaderText = "SL";
             this.SL.Name = "SL";
             this.SL.ReadOnly = true;
-            this.SL.Width = 50;
+            this.SL.Width = 25;
             // 
             // Date
             // 
@@ -802,12 +800,11 @@
             // 
             // SenderId
             // 
-            this.SenderId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SenderId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.SenderId.DataPropertyName = "SenderId";
             this.SenderId.HeaderText = "Sender Email";
             this.SenderId.Name = "SenderId";
             this.SenderId.ReadOnly = true;
-            this.SenderId.Width = 150;
             // 
             // name
             // 
@@ -856,13 +853,6 @@
             this.Hosts.HeaderText = "Host";
             this.Hosts.Name = "Hosts";
             this.Hosts.ReadOnly = true;
-            // 
-            // Ports
-            // 
-            this.Ports.DataPropertyName = "Port";
-            this.Ports.HeaderText = "Ports";
-            this.Ports.Name = "Ports";
-            this.Ports.ReadOnly = true;
             // 
             // UserNames
             // 
@@ -1169,7 +1159,6 @@
             this.Subject,
             this.Content,
             this.Host,
-            this.Port,
             this.UserName,
             this.Password});
             this.dgvUploadSender.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1191,66 +1180,6 @@
             this.dgvUploadSender.Size = new System.Drawing.Size(830, 470);
             this.dgvUploadSender.TabIndex = 111;
             this.dgvUploadSender.TabStop = false;
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Emails";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // Names
-            // 
-            this.Names.DataPropertyName = "Name";
-            this.Names.FillWeight = 80F;
-            this.Names.HeaderText = "Name";
-            this.Names.Name = "Names";
-            this.Names.ReadOnly = true;
-            // 
-            // Subject
-            // 
-            this.Subject.DataPropertyName = "Subject";
-            this.Subject.HeaderText = "Subject";
-            this.Subject.Name = "Subject";
-            this.Subject.ReadOnly = true;
-            // 
-            // Content
-            // 
-            this.Content.DataPropertyName = "Content";
-            this.Content.FillWeight = 150F;
-            this.Content.HeaderText = "Content";
-            this.Content.Name = "Content";
-            this.Content.ReadOnly = true;
-            // 
-            // Host
-            // 
-            this.Host.DataPropertyName = "Host";
-            this.Host.HeaderText = "Host";
-            this.Host.Name = "Host";
-            this.Host.ReadOnly = true;
-            // 
-            // Port
-            // 
-            this.Port.DataPropertyName = "Port";
-            this.Port.HeaderText = "Port";
-            this.Port.Name = "Port";
-            this.Port.ReadOnly = true;
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "UserName";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Visible = false;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Visible = false;
             // 
             // TxtFileName
             // 
@@ -1400,7 +1329,7 @@
             // 
             this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUser.Font = new System.Drawing.Font("Tw Cen MT", 11F, System.Drawing.FontStyle.Bold);
-            this.lblUser.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblUser.ForeColor = System.Drawing.Color.Black;
             this.lblUser.Location = new System.Drawing.Point(605, 1);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(187, 15);
@@ -1412,7 +1341,7 @@
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.Font = new System.Drawing.Font("MS Reference Sans Serif", 7F);
-            this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblVersion.ForeColor = System.Drawing.Color.Gray;
             this.lblVersion.Location = new System.Drawing.Point(747, 675);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(158, 13);
@@ -1425,7 +1354,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 7F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Location = new System.Drawing.Point(2, 675);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 13);
@@ -1478,7 +1407,7 @@
             this.btnSettings.ContextMenuStrip = this.contextOptions;
             this.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSettings.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSettings.ForeColor = System.Drawing.Color.Black;
             this.btnSettings.Location = new System.Drawing.Point(815, -1);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(25, 20);
@@ -1494,13 +1423,14 @@
             this.lblHelp.ContextMenuStrip = this.contextHelp;
             this.lblHelp.Cursor = System.Windows.Forms.Cursors.Help;
             this.lblHelp.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHelp.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblHelp.ForeColor = System.Drawing.Color.Black;
             this.lblHelp.Location = new System.Drawing.Point(794, 0);
             this.lblHelp.Name = "lblHelp";
             this.lblHelp.Size = new System.Drawing.Size(19, 20);
             this.lblHelp.TabIndex = 1;
             this.lblHelp.Text = "?";
             this.toolTip1.SetToolTip(this.lblHelp, "Help");
+            this.lblHelp.Visible = false;
             this.lblHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblHelp_MouseDown);
             // 
             // contextHelp
@@ -1531,7 +1461,7 @@
             this.lblLogout.AutoSize = true;
             this.lblLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogout.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblLogout.ForeColor = System.Drawing.Color.Black;
             this.lblLogout.Location = new System.Drawing.Point(842, -2);
             this.lblLogout.Name = "lblLogout";
             this.lblLogout.Size = new System.Drawing.Size(23, 20);
@@ -1546,7 +1476,7 @@
             this.lblMinimized.AutoSize = true;
             this.lblMinimized.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblMinimized.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinimized.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblMinimized.ForeColor = System.Drawing.Color.Black;
             this.lblMinimized.Location = new System.Drawing.Point(866, -1);
             this.lblMinimized.Name = "lblMinimized";
             this.lblMinimized.Size = new System.Drawing.Size(20, 20);
@@ -1559,7 +1489,7 @@
             // 
             this.lblHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHome.Font = new System.Drawing.Font("Tw Cen MT", 11F, System.Drawing.FontStyle.Bold);
-            this.lblHome.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblHome.ForeColor = System.Drawing.Color.DimGray;
             this.lblHome.Location = new System.Drawing.Point(27, 2);
             this.lblHome.Name = "lblHome";
             this.lblHome.Size = new System.Drawing.Size(166, 15);
@@ -1587,6 +1517,24 @@
             this.ValidKeyChecker.Interval = 100000;
             this.ValidKeyChecker.Tick += new System.EventHandler(this.ValidKeyChecker_Tick);
             // 
+            // sssTimer
+            // 
+            this.sssTimer.Enabled = true;
+            this.sssTimer.Interval = 120000;
+            this.sssTimer.Tick += new System.EventHandler(this.sssTimer_Tick);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("MS Reference Sans Serif", 7F);
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Location = new System.Drawing.Point(296, 677);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(330, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Contact For Freelancing : WhatsApp : +880 1923 966 147";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
@@ -1598,22 +1546,70 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // sssTimer
+            // Email
             // 
-            this.sssTimer.Enabled = true;
-            this.sssTimer.Interval = 40000;
-            this.sssTimer.Tick += new System.EventHandler(this.sssTimer_Tick);
+            this.Email.DataPropertyName = "UserName";
+            this.Email.HeaderText = "Emails";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Names
+            // 
+            this.Names.DataPropertyName = "Name";
+            this.Names.FillWeight = 80F;
+            this.Names.HeaderText = "Name";
+            this.Names.Name = "Names";
+            this.Names.ReadOnly = true;
+            // 
+            // Subject
+            // 
+            this.Subject.DataPropertyName = "Subject";
+            this.Subject.HeaderText = "Subject";
+            this.Subject.Name = "Subject";
+            this.Subject.ReadOnly = true;
+            // 
+            // Content
+            // 
+            this.Content.DataPropertyName = "Content";
+            this.Content.FillWeight = 150F;
+            this.Content.HeaderText = "Content";
+            this.Content.Name = "Content";
+            this.Content.ReadOnly = true;
+            // 
+            // Host
+            // 
+            this.Host.DataPropertyName = "Host";
+            this.Host.HeaderText = "Host";
+            this.Host.Name = "Host";
+            this.Host.ReadOnly = true;
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "UserName";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Visible = false;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
             // 
             // MultiTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(910, 690);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblLogout);
             this.Controls.Add(this.lblMinimized);
             this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblClose);
             this.Controls.Add(this.lblHelp);
@@ -1622,6 +1618,7 @@
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblIsDemo);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1767,14 +1764,8 @@
         private System.Windows.Forms.Label lblIsDemo;
         private System.Windows.Forms.Timer ValidKeyChecker;
         private System.Windows.Forms.Button btnAllUploadedDelete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Names;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Content;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Host;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Port;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.Timer sssTimer;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn SL;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
@@ -1784,9 +1775,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Subjects;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contents;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hosts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ports;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserNames;
         private System.Windows.Forms.DataGridViewTextBoxColumn Passwords;
-        private System.Windows.Forms.Timer sssTimer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Names;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Content;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Host;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
     }
 }

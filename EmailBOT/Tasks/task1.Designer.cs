@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(task1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(task1));
             this.grpSendingOptions = new System.Windows.Forms.GroupBox();
+            this.txtMessageHtml = new System.Windows.Forms.RichTextBox();
+            this.txtMessage = new System.Windows.Forms.RichTextBox();
+            this.chkImportSubject = new System.Windows.Forms.CheckBox();
+            this.chkAddLink = new System.Windows.Forms.CheckBox();
+            this.chkBodyContentImport = new System.Windows.Forms.CheckBox();
             this.txtRandomMapValue = new System.Windows.Forms.NumericUpDown();
-            this.txtMessageHtml = new System.Windows.Forms.TextBox();
-            this.txtMessage = new System.Windows.Forms.TextBox();
             this.lblMsg = new System.Windows.Forms.Label();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.txtRandomNameSubjectChanger = new System.Windows.Forms.NumericUpDown();
@@ -49,14 +52,8 @@
             this.lnkViewEmailList = new System.Windows.Forms.LinkLabel();
             this.txtCredentialPath = new System.Windows.Forms.TextBox();
             this.rdoDelay20Mail = new System.Windows.Forms.RadioButton();
-            this.btnView = new System.Windows.Forms.PictureBox();
-            this.btnImportHtml = new System.Windows.Forms.PictureBox();
-            this.btnImportContent = new System.Windows.Forms.PictureBox();
-            this.btnSelectSender = new System.Windows.Forms.PictureBox();
-            this.importSubject = new System.Windows.Forms.PictureBox();
             this.btnSendEnail = new System.Windows.Forms.Button();
             this.txtAppName = new System.Windows.Forms.TextBox();
-            this.importName = new System.Windows.Forms.PictureBox();
             this.txtFromMail = new System.Windows.Forms.TextBox();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.txtDelay = new System.Windows.Forms.NumericUpDown();
@@ -69,7 +66,6 @@
             this.chkRandomSender = new System.Windows.Forms.CheckBox();
             this.chkGetRandomName = new System.Windows.Forms.CheckBox();
             this.chkAllRandomChangeAfterSent = new System.Windows.Forms.CheckBox();
-            this.chkSubjectFaker = new System.Windows.Forms.CheckBox();
             this.chkRandomMap = new System.Windows.Forms.CheckBox();
             this.chkSentanceMaker = new System.Windows.Forms.CheckBox();
             this.chkEnableSSL = new System.Windows.Forms.CheckBox();
@@ -83,10 +79,6 @@
             this.lblHtmlPath = new System.Windows.Forms.Label();
             this.lblContentPath = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblGetName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -118,11 +110,21 @@
             this.btnImporttxtCsv = new System.Windows.Forms.Button();
             this.pnlTitle_Contact = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.deleteSendData = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label13 = new System.Windows.Forms.Label();
             this.lblClose = new System.Windows.Forms.Label();
             this.chkLogFolderSelect = new System.Windows.Forms.CheckBox();
+            this.deleteSendData = new System.Windows.Forms.PictureBox();
+            this.btnView = new System.Windows.Forms.PictureBox();
+            this.btnImportHtml = new System.Windows.Forms.PictureBox();
+            this.btnImportContent = new System.Windows.Forms.PictureBox();
+            this.btnSelectSender = new System.Windows.Forms.PictureBox();
+            this.importSubject = new System.Windows.Forms.PictureBox();
+            this.importName = new System.Windows.Forms.PictureBox();
+            this.rdo587 = new System.Windows.Forms.RadioButton();
+            this.rdo25 = new System.Windows.Forms.RadioButton();
+            this.rdo465 = new System.Windows.Forms.RadioButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.grpSendingOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRandomMapValue)).BeginInit();
             this.pnlBottom.SuspendLayout();
@@ -130,12 +132,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtdelayAfterRandomChange)).BeginInit();
             this.pnlSendValueFromPerSender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtChangeSenderAfterSendThis)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImportHtml)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImportContent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSelectSender)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importSubject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelay)).BeginInit();
             this.pnlAttach.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -146,14 +142,25 @@
             this.pnlButtom_Contact.SuspendLayout();
             this.pnlTitle_Contact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteSendData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImportHtml)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImportContent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSelectSender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importSubject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importName)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpSendingOptions
             // 
             this.grpSendingOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.grpSendingOptions.Controls.Add(this.txtRandomMapValue);
+            this.grpSendingOptions.Controls.Add(this.panel2);
             this.grpSendingOptions.Controls.Add(this.txtMessageHtml);
             this.grpSendingOptions.Controls.Add(this.txtMessage);
+            this.grpSendingOptions.Controls.Add(this.chkImportSubject);
+            this.grpSendingOptions.Controls.Add(this.chkAddLink);
+            this.grpSendingOptions.Controls.Add(this.chkBodyContentImport);
+            this.grpSendingOptions.Controls.Add(this.txtRandomMapValue);
             this.grpSendingOptions.Controls.Add(this.lblMsg);
             this.grpSendingOptions.Controls.Add(this.pnlBottom);
             this.grpSendingOptions.Controls.Add(this.btnPauseRun);
@@ -178,7 +185,6 @@
             this.grpSendingOptions.Controls.Add(this.chkRandomSender);
             this.grpSendingOptions.Controls.Add(this.chkGetRandomName);
             this.grpSendingOptions.Controls.Add(this.chkAllRandomChangeAfterSent);
-            this.grpSendingOptions.Controls.Add(this.chkSubjectFaker);
             this.grpSendingOptions.Controls.Add(this.chkRandomMap);
             this.grpSendingOptions.Controls.Add(this.chkSentanceMaker);
             this.grpSendingOptions.Controls.Add(this.chkEnableSSL);
@@ -192,10 +198,6 @@
             this.grpSendingOptions.Controls.Add(this.lblHtmlPath);
             this.grpSendingOptions.Controls.Add(this.lblContentPath);
             this.grpSendingOptions.Controls.Add(this.label4);
-            this.grpSendingOptions.Controls.Add(this.label10);
-            this.grpSendingOptions.Controls.Add(this.label9);
-            this.grpSendingOptions.Controls.Add(this.label6);
-            this.grpSendingOptions.Controls.Add(this.label1);
             this.grpSendingOptions.Controls.Add(this.lblGetName);
             this.grpSendingOptions.Controls.Add(this.label2);
             this.grpSendingOptions.Controls.Add(this.label3);
@@ -211,6 +213,63 @@
             this.grpSendingOptions.TabIndex = 0;
             this.grpSendingOptions.TabStop = false;
             this.grpSendingOptions.Enter += new System.EventHandler(this.task1_Enter);
+            // 
+            // txtMessageHtml
+            // 
+            this.txtMessageHtml.Location = new System.Drawing.Point(140, 327);
+            this.txtMessageHtml.Name = "txtMessageHtml";
+            this.txtMessageHtml.Size = new System.Drawing.Size(453, 147);
+            this.txtMessageHtml.TabIndex = 57;
+            this.txtMessageHtml.Text = "";
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Location = new System.Drawing.Point(139, 180);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(456, 126);
+            this.txtMessage.TabIndex = 57;
+            this.txtMessage.Text = "";
+            // 
+            // chkImportSubject
+            // 
+            this.chkImportSubject.AutoSize = true;
+            this.chkImportSubject.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkImportSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.chkImportSubject.ForeColor = System.Drawing.Color.White;
+            this.chkImportSubject.Location = new System.Drawing.Point(425, 88);
+            this.chkImportSubject.Name = "chkImportSubject";
+            this.chkImportSubject.Size = new System.Drawing.Size(72, 21);
+            this.chkImportSubject.TabIndex = 56;
+            this.chkImportSubject.Text = "Import";
+            this.chkImportSubject.UseVisualStyleBackColor = true;
+            this.chkImportSubject.CheckedChanged += new System.EventHandler(this.chkImportSubject_CheckedChanged);
+            // 
+            // chkAddLink
+            // 
+            this.chkAddLink.AutoSize = true;
+            this.chkAddLink.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkAddLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.chkAddLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkAddLink.Location = new System.Drawing.Point(11, 548);
+            this.chkAddLink.Name = "chkAddLink";
+            this.chkAddLink.Size = new System.Drawing.Size(15, 14);
+            this.chkAddLink.TabIndex = 55;
+            this.chkAddLink.UseVisualStyleBackColor = true;
+            this.chkAddLink.CheckedChanged += new System.EventHandler(this.chkBodyContentImport_CheckedChanged);
+            // 
+            // chkBodyContentImport
+            // 
+            this.chkBodyContentImport.AutoSize = true;
+            this.chkBodyContentImport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkBodyContentImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.chkBodyContentImport.ForeColor = System.Drawing.Color.White;
+            this.chkBodyContentImport.Location = new System.Drawing.Point(24, 253);
+            this.chkBodyContentImport.Name = "chkBodyContentImport";
+            this.chkBodyContentImport.Size = new System.Drawing.Size(77, 21);
+            this.chkBodyContentImport.TabIndex = 55;
+            this.chkBodyContentImport.Text = "Import ";
+            this.chkBodyContentImport.UseVisualStyleBackColor = true;
+            this.chkBodyContentImport.CheckedChanged += new System.EventHandler(this.chkBodyContentImport_CheckedChanged);
             // 
             // txtRandomMapValue
             // 
@@ -236,22 +295,6 @@
             0});
             this.txtRandomMapValue.Visible = false;
             // 
-            // txtMessageHtml
-            // 
-            this.txtMessageHtml.Location = new System.Drawing.Point(139, 325);
-            this.txtMessageHtml.Multiline = true;
-            this.txtMessageHtml.Name = "txtMessageHtml";
-            this.txtMessageHtml.Size = new System.Drawing.Size(458, 147);
-            this.txtMessageHtml.TabIndex = 53;
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Location = new System.Drawing.Point(139, 179);
-            this.txtMessage.Multiline = true;
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(458, 124);
-            this.txtMessage.TabIndex = 52;
-            // 
             // lblMsg
             // 
             this.lblMsg.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -268,7 +311,7 @@
             this.pnlBottom.Controls.Add(this.txtRandomNameSubjectChanger);
             this.pnlBottom.Controls.Add(this.label15);
             this.pnlBottom.Controls.Add(this.txtdelayAfterRandomChange);
-            this.pnlBottom.Location = new System.Drawing.Point(32, 535);
+            this.pnlBottom.Location = new System.Drawing.Point(80, 535);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(318, 34);
             this.pnlBottom.TabIndex = 51;
@@ -305,7 +348,7 @@
             this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.label15.Location = new System.Drawing.Point(3, 5);
+            this.label15.Location = new System.Drawing.Point(-4, 7);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(322, 21);
             this.label15.TabIndex = 49;
@@ -338,7 +381,7 @@
             // 
             // btnPauseRun
             // 
-            this.btnPauseRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.btnPauseRun.BackColor = System.Drawing.Color.White;
             this.btnPauseRun.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPauseRun.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPauseRun.ForeColor = System.Drawing.Color.Black;
@@ -389,7 +432,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label12.ForeColor = System.Drawing.Color.White;
             this.label12.Location = new System.Drawing.Point(3, 4);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(64, 26);
@@ -413,7 +456,7 @@
             this.txtCredentialPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCredentialPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCredentialPath.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCredentialPath.Location = new System.Drawing.Point(459, 13);
+            this.txtCredentialPath.Location = new System.Drawing.Point(224, 493);
             this.txtCredentialPath.Multiline = true;
             this.txtCredentialPath.Name = "txtCredentialPath";
             this.txtCredentialPath.ReadOnly = true;
@@ -426,97 +469,19 @@
             // rdoDelay20Mail
             // 
             this.rdoDelay20Mail.AutoSize = true;
-            this.rdoDelay20Mail.Checked = true;
             this.rdoDelay20Mail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdoDelay20Mail.Font = new System.Drawing.Font("Tw Cen MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDelay20Mail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.rdoDelay20Mail.ForeColor = System.Drawing.Color.White;
             this.rdoDelay20Mail.Location = new System.Drawing.Point(283, 112);
             this.rdoDelay20Mail.Name = "rdoDelay20Mail";
             this.rdoDelay20Mail.Size = new System.Drawing.Size(98, 19);
             this.rdoDelay20Mail.TabIndex = 7;
-            this.rdoDelay20Mail.TabStop = true;
             this.rdoDelay20Mail.Text = "Every 20 mails";
             this.rdoDelay20Mail.UseVisualStyleBackColor = true;
             // 
-            // btnView
-            // 
-            this.btnView.BackColor = System.Drawing.Color.Transparent;
-            this.btnView.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Image = ((System.Drawing.Image)(resources.GetObject("btnView.Image")));
-            this.btnView.Location = new System.Drawing.Point(599, 446);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(25, 23);
-            this.btnView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnView.TabIndex = 39;
-            this.btnView.TabStop = false;
-            this.btnView.Visible = false;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnImportHtml
-            // 
-            this.btnImportHtml.BackColor = System.Drawing.Color.IndianRed;
-            this.btnImportHtml.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.btnImportHtml.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnImportHtml.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImportHtml.Image = global::EmailBOT.Properties.Resources.import;
-            this.btnImportHtml.Location = new System.Drawing.Point(603, 345);
-            this.btnImportHtml.Name = "btnImportHtml";
-            this.btnImportHtml.Size = new System.Drawing.Size(16, 16);
-            this.btnImportHtml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnImportHtml.TabIndex = 39;
-            this.btnImportHtml.TabStop = false;
-            this.btnImportHtml.Click += new System.EventHandler(this.btnImportHtml_Click);
-            // 
-            // btnImportContent
-            // 
-            this.btnImportContent.BackColor = System.Drawing.Color.IndianRed;
-            this.btnImportContent.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.btnImportContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnImportContent.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImportContent.Image = global::EmailBOT.Properties.Resources.import;
-            this.btnImportContent.Location = new System.Drawing.Point(603, 188);
-            this.btnImportContent.Name = "btnImportContent";
-            this.btnImportContent.Size = new System.Drawing.Size(16, 16);
-            this.btnImportContent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnImportContent.TabIndex = 39;
-            this.btnImportContent.TabStop = false;
-            this.btnImportContent.Click += new System.EventHandler(this.btnImportContent_Click);
-            // 
-            // btnSelectSender
-            // 
-            this.btnSelectSender.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSelectSender.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.btnSelectSender.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSelectSender.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelectSender.Image = global::EmailBOT.Properties.Resources.import;
-            this.btnSelectSender.Location = new System.Drawing.Point(382, 65);
-            this.btnSelectSender.Name = "btnSelectSender";
-            this.btnSelectSender.Size = new System.Drawing.Size(16, 16);
-            this.btnSelectSender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnSelectSender.TabIndex = 39;
-            this.btnSelectSender.TabStop = false;
-            this.btnSelectSender.Click += new System.EventHandler(this.btnSelecSender_Click);
-            // 
-            // importSubject
-            // 
-            this.importSubject.BackColor = System.Drawing.Color.IndianRed;
-            this.importSubject.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.importSubject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.importSubject.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.importSubject.Location = new System.Drawing.Point(421, 92);
-            this.importSubject.Name = "importSubject";
-            this.importSubject.Size = new System.Drawing.Size(16, 16);
-            this.importSubject.TabIndex = 39;
-            this.importSubject.TabStop = false;
-            this.toolTip1.SetToolTip(this.importSubject, "Import txt file or Set subject with commas for random selection\r\nExample : Subjec" +
-        "t1, Subject2, Subject3\r\n");
-            this.importSubject.Click += new System.EventHandler(this.importSubject_Click);
-            // 
             // btnSendEnail
             // 
-            this.btnSendEnail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.btnSendEnail.BackColor = System.Drawing.Color.White;
             this.btnSendEnail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSendEnail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSendEnail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -542,21 +507,6 @@
             this.txtAppName.TabIndex = 0;
             this.txtAppName.Tag = "";
             this.txtAppName.Leave += new System.EventHandler(this.txtAppName_Leave);
-            // 
-            // importName
-            // 
-            this.importName.BackColor = System.Drawing.Color.IndianRed;
-            this.importName.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.importName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.importName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.importName.Location = new System.Drawing.Point(351, 39);
-            this.importName.Name = "importName";
-            this.importName.Size = new System.Drawing.Size(16, 16);
-            this.importName.TabIndex = 40;
-            this.importName.TabStop = false;
-            this.toolTip1.SetToolTip(this.importName, "Import txt file or Set name with commas for random selection\r\nExample : Subject1," +
-        " Subject2, Subject3");
-            this.importName.Click += new System.EventHandler(this.importName_Click);
             // 
             // txtFromMail
             // 
@@ -638,7 +588,7 @@
             // 
             // btnAttachment
             // 
-            this.btnAttachment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.btnAttachment.BackColor = System.Drawing.Color.White;
             this.btnAttachment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAttachment.ForeColor = System.Drawing.Color.Black;
             this.btnAttachment.Location = new System.Drawing.Point(271, 0);
@@ -654,7 +604,7 @@
             // 
             this.chkRandomAtthmentName.AutoSize = true;
             this.chkRandomAtthmentName.Font = new System.Drawing.Font("Tw Cen MT", 11F, System.Drawing.FontStyle.Bold);
-            this.chkRandomAtthmentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkRandomAtthmentName.ForeColor = System.Drawing.Color.White;
             this.chkRandomAtthmentName.Location = new System.Drawing.Point(321, -1);
             this.chkRandomAtthmentName.Name = "chkRandomAtthmentName";
             this.chkRandomAtthmentName.Size = new System.Drawing.Size(157, 38);
@@ -668,7 +618,7 @@
             this.rdoDelayEachMail.AutoSize = true;
             this.rdoDelayEachMail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdoDelayEachMail.Font = new System.Drawing.Font("Tw Cen MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDelayEachMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.rdoDelayEachMail.ForeColor = System.Drawing.Color.White;
             this.rdoDelayEachMail.Location = new System.Drawing.Point(206, 113);
             this.rdoDelayEachMail.Name = "rdoDelayEachMail";
             this.rdoDelayEachMail.Size = new System.Drawing.Size(73, 19);
@@ -681,7 +631,7 @@
             this.chkRandomSender.AutoSize = true;
             this.chkRandomSender.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkRandomSender.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.chkRandomSender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkRandomSender.ForeColor = System.Drawing.Color.White;
             this.chkRandomSender.Location = new System.Drawing.Point(406, 65);
             this.chkRandomSender.Name = "chkRandomSender";
             this.chkRandomSender.Size = new System.Drawing.Size(116, 17);
@@ -696,12 +646,12 @@
             this.chkGetRandomName.AutoSize = true;
             this.chkGetRandomName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkGetRandomName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.chkGetRandomName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkGetRandomName.ForeColor = System.Drawing.Color.White;
             this.chkGetRandomName.Location = new System.Drawing.Point(138, 13);
             this.chkGetRandomName.Name = "chkGetRandomName";
-            this.chkGetRandomName.Size = new System.Drawing.Size(243, 17);
+            this.chkGetRandomName.Size = new System.Drawing.Size(187, 17);
             this.chkGetRandomName.TabIndex = 8;
-            this.chkGetRandomName.Text = "Generate Random Name After 10 Sent";
+            this.chkGetRandomName.Text = "Random Name After 10 Sent";
             this.chkGetRandomName.UseVisualStyleBackColor = true;
             // 
             // chkAllRandomChangeAfterSent
@@ -710,7 +660,7 @@
             this.chkAllRandomChangeAfterSent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkAllRandomChangeAfterSent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.chkAllRandomChangeAfterSent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
-            this.chkAllRandomChangeAfterSent.Location = new System.Drawing.Point(15, 546);
+            this.chkAllRandomChangeAfterSent.Location = new System.Drawing.Point(63, 546);
             this.chkAllRandomChangeAfterSent.Name = "chkAllRandomChangeAfterSent";
             this.chkAllRandomChangeAfterSent.Size = new System.Drawing.Size(15, 14);
             this.chkAllRandomChangeAfterSent.TabIndex = 8;
@@ -718,26 +668,12 @@
             this.chkAllRandomChangeAfterSent.Visible = false;
             this.chkAllRandomChangeAfterSent.CheckedChanged += new System.EventHandler(this.chkAllRandomChangeAfterSent_CheckedChanged);
             // 
-            // chkSubjectFaker
-            // 
-            this.chkSubjectFaker.AutoSize = true;
-            this.chkSubjectFaker.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkSubjectFaker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.chkSubjectFaker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkSubjectFaker.Location = new System.Drawing.Point(443, 90);
-            this.chkSubjectFaker.Name = "chkSubjectFaker";
-            this.chkSubjectFaker.Size = new System.Drawing.Size(85, 17);
-            this.chkSubjectFaker.TabIndex = 8;
-            this.chkSubjectFaker.Text = "Subject AI";
-            this.chkSubjectFaker.UseVisualStyleBackColor = true;
-            this.chkSubjectFaker.Visible = false;
-            // 
             // chkRandomMap
             // 
             this.chkRandomMap.AutoSize = true;
             this.chkRandomMap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkRandomMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkRandomMap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkRandomMap.ForeColor = System.Drawing.Color.White;
             this.chkRandomMap.Location = new System.Drawing.Point(454, 114);
             this.chkRandomMap.Name = "chkRandomMap";
             this.chkRandomMap.Size = new System.Drawing.Size(119, 21);
@@ -751,7 +687,7 @@
             this.chkSentanceMaker.AutoSize = true;
             this.chkSentanceMaker.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkSentanceMaker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkSentanceMaker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkSentanceMaker.ForeColor = System.Drawing.Color.White;
             this.chkSentanceMaker.Location = new System.Drawing.Point(399, 113);
             this.chkSentanceMaker.Name = "chkSentanceMaker";
             this.chkSentanceMaker.Size = new System.Drawing.Size(57, 21);
@@ -767,7 +703,7 @@
             this.chkEnableSSL.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEnableSSL.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkEnableSSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkEnableSSL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkEnableSSL.ForeColor = System.Drawing.Color.White;
             this.chkEnableSSL.Location = new System.Drawing.Point(6, 11);
             this.chkEnableSSL.Name = "chkEnableSSL";
             this.chkEnableSSL.Size = new System.Drawing.Size(106, 21);
@@ -781,7 +717,7 @@
             this.chkPlain.AutoSize = true;
             this.chkPlain.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkPlain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkPlain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkPlain.ForeColor = System.Drawing.Color.White;
             this.chkPlain.Location = new System.Drawing.Point(24, 212);
             this.chkPlain.Name = "chkPlain";
             this.chkPlain.Size = new System.Drawing.Size(99, 21);
@@ -795,7 +731,7 @@
             this.chkAttachment.AutoSize = true;
             this.chkAttachment.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkAttachment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkAttachment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkAttachment.ForeColor = System.Drawing.Color.White;
             this.chkAttachment.Location = new System.Drawing.Point(24, 147);
             this.chkAttachment.Name = "chkAttachment";
             this.chkAttachment.Size = new System.Drawing.Size(108, 21);
@@ -808,7 +744,7 @@
             // 
             this.lblTotalSentMail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblTotalSentMail.Font = new System.Drawing.Font("Tw Cen MT", 13F, System.Drawing.FontStyle.Bold);
-            this.lblTotalSentMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.lblTotalSentMail.ForeColor = System.Drawing.Color.White;
             this.lblTotalSentMail.Location = new System.Drawing.Point(336, 539);
             this.lblTotalSentMail.Name = "lblTotalSentMail";
             this.lblTotalSentMail.Size = new System.Drawing.Size(261, 25);
@@ -820,7 +756,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label16.ForeColor = System.Drawing.Color.White;
             this.label16.Location = new System.Drawing.Point(21, 327);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(111, 17);
@@ -831,7 +767,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(21, 181);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 17);
@@ -842,7 +778,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(66, 117);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(47, 17);
@@ -853,7 +789,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(20, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 17);
@@ -885,7 +821,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(20, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 17);
@@ -893,63 +829,12 @@
             this.label4.Text = "Subject";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tw Cen MT", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
-            this.label10.Location = new System.Drawing.Point(5, 149);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(14, 16);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "?";
-            this.toolTip1.SetToolTip(this.label10, "Check Attachment  or copy attachment files to application attachment folder\r\nExam" +
-        "ple1 : Application path/attachment/task1/\r\nExample1 : Application path/attachmen" +
-        "t/task2/\r\n");
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tw Cen MT", 10F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
-            this.label9.Location = new System.Drawing.Point(5, 117);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(14, 16);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "?";
-            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tw Cen MT", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
-            this.label6.Location = new System.Drawing.Point(5, 87);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 16);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "?";
-            this.toolTip1.SetToolTip(this.label6, "Set subject with commas for random selection\r\nExample : Subject1, Subject2, Subje" +
-        "ct3\r\n");
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tw Cen MT", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
-            this.label1.Location = new System.Drawing.Point(5, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "?";
-            this.toolTip1.SetToolTip(this.label1, "Set name with commas for random selection\r\nExample : name1,name2, name3");
-            // 
             // lblGetName
             // 
             this.lblGetName.AutoSize = true;
             this.lblGetName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.lblGetName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.lblGetName.ForeColor = System.Drawing.Color.White;
             this.lblGetName.Location = new System.Drawing.Point(373, 38);
             this.lblGetName.Name = "lblGetName";
             this.lblGetName.Size = new System.Drawing.Size(113, 13);
@@ -962,7 +847,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(19, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 17);
@@ -973,7 +858,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(20, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 17);
@@ -998,7 +883,7 @@
             // 
             this.chkHtmlToImage.AutoSize = true;
             this.chkHtmlToImage.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
-            this.chkHtmlToImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkHtmlToImage.ForeColor = System.Drawing.Color.White;
             this.chkHtmlToImage.Location = new System.Drawing.Point(4, 111);
             this.chkHtmlToImage.Name = "chkHtmlToImage";
             this.chkHtmlToImage.Size = new System.Drawing.Size(130, 23);
@@ -1012,7 +897,7 @@
             this.chkHtmlToImageToPdf.AutoSize = true;
             this.chkHtmlToImageToPdf.Checked = true;
             this.chkHtmlToImageToPdf.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
-            this.chkHtmlToImageToPdf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkHtmlToImageToPdf.ForeColor = System.Drawing.Color.White;
             this.chkHtmlToImageToPdf.Location = new System.Drawing.Point(4, 47);
             this.chkHtmlToImageToPdf.Name = "chkHtmlToImageToPdf";
             this.chkHtmlToImageToPdf.Size = new System.Drawing.Size(99, 42);
@@ -1026,7 +911,7 @@
             // 
             this.chkPdf.AutoSize = true;
             this.chkPdf.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
-            this.chkPdf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkPdf.ForeColor = System.Drawing.Color.White;
             this.chkPdf.Location = new System.Drawing.Point(4, 24);
             this.chkPdf.Name = "chkPdf";
             this.chkPdf.Size = new System.Drawing.Size(107, 23);
@@ -1039,7 +924,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
-            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.radioButton1.ForeColor = System.Drawing.Color.White;
             this.radioButton1.Location = new System.Drawing.Point(4, -1);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(65, 23);
@@ -1052,7 +937,7 @@
             // 
             this.chkHtmltemplate.AutoSize = true;
             this.chkHtmltemplate.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold);
-            this.chkHtmltemplate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkHtmltemplate.ForeColor = System.Drawing.Color.White;
             this.chkHtmltemplate.Location = new System.Drawing.Point(3, 88);
             this.chkHtmltemplate.Name = "chkHtmltemplate";
             this.chkHtmltemplate.Size = new System.Drawing.Size(127, 23);
@@ -1066,7 +951,7 @@
             this.chkIsBottomBody.AutoSize = true;
             this.chkIsBottomBody.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkIsBottomBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.chkIsBottomBody.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.chkIsBottomBody.ForeColor = System.Drawing.Color.White;
             this.chkIsBottomBody.Location = new System.Drawing.Point(4, 134);
             this.chkIsBottomBody.Name = "chkIsBottomBody";
             this.chkIsBottomBody.Size = new System.Drawing.Size(138, 21);
@@ -1079,8 +964,8 @@
             // 
             this.chkRandomContent.AutoSize = true;
             this.chkRandomContent.Font = new System.Drawing.Font("Tw Cen MT", 10F, System.Drawing.FontStyle.Bold);
-            this.chkRandomContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkRandomContent.Location = new System.Drawing.Point(477, 304);
+            this.chkRandomContent.ForeColor = System.Drawing.Color.White;
+            this.chkRandomContent.Location = new System.Drawing.Point(477, 307);
             this.chkRandomContent.Name = "chkRandomContent";
             this.chkRandomContent.Size = new System.Drawing.Size(121, 20);
             this.chkRandomContent.TabIndex = 44;
@@ -1093,8 +978,8 @@
             // 
             this.chkRandomHtml.AutoSize = true;
             this.chkRandomHtml.Font = new System.Drawing.Font("Tw Cen MT", 10F, System.Drawing.FontStyle.Bold);
-            this.chkRandomHtml.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.chkRandomHtml.Location = new System.Drawing.Point(496, 475);
+            this.chkRandomHtml.ForeColor = System.Drawing.Color.White;
+            this.chkRandomHtml.Location = new System.Drawing.Point(496, 476);
             this.chkRandomHtml.Name = "chkRandomHtml";
             this.chkRandomHtml.Size = new System.Drawing.Size(102, 20);
             this.chkRandomHtml.TabIndex = 44;
@@ -1307,7 +1192,7 @@
             // 
             // btnImporttxtCsv
             // 
-            this.btnImporttxtCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.btnImporttxtCsv.BackColor = System.Drawing.Color.White;
             this.btnImporttxtCsv.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnImporttxtCsv.FlatAppearance.BorderSize = 0;
             this.btnImporttxtCsv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1324,7 +1209,7 @@
             // 
             // pnlTitle_Contact
             // 
-            this.pnlTitle_Contact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
+            this.pnlTitle_Contact.BackColor = System.Drawing.Color.White;
             this.pnlTitle_Contact.Controls.Add(this.label8);
             this.pnlTitle_Contact.Controls.Add(this.deleteSendData);
             this.pnlTitle_Contact.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1344,23 +1229,6 @@
             this.label8.TabIndex = 1;
             this.label8.Text = "Client Mail";
             // 
-            // deleteSendData
-            // 
-            this.deleteSendData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.deleteSendData.BackgroundImage = global::EmailBOT.Properties.Resources.import;
-            this.deleteSendData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.deleteSendData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.deleteSendData.Image = ((System.Drawing.Image)(resources.GetObject("deleteSendData.Image")));
-            this.deleteSendData.Location = new System.Drawing.Point(210, 3);
-            this.deleteSendData.Name = "deleteSendData";
-            this.deleteSendData.Size = new System.Drawing.Size(27, 27);
-            this.deleteSendData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.deleteSendData.TabIndex = 39;
-            this.deleteSendData.TabStop = false;
-            this.toolTip1.SetToolTip(this.deleteSendData, "Delete sent data from imported list");
-            this.deleteSendData.Click += new System.EventHandler(this.lblRemoveSentData_Click);
-            this.deleteSendData.DoubleClick += new System.EventHandler(this.deleteSendData_DoubleClick);
-            // 
             // toolTip1
             // 
             this.toolTip1.AutoPopDelay = 8000;
@@ -1372,13 +1240,14 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(239)))));
-            this.label13.Location = new System.Drawing.Point(255, 3);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(255, 5);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(520, 15);
+            this.label13.Size = new System.Drawing.Size(612, 13);
             this.label13.TabIndex = 1;
-            this.label13.Text = "TAGS: #EMAIL#, #RANDOM# , #NUMBER#,  #INVOICE#, #LETTERS# , #KEY#     ";
+            this.label13.Text = "TAGS: #EMAIL#, #RANDOM# , #NUMBER#, #SNUMBER#, #INVOICE#, #LETTERS# , #KEY# ,#AMO" +
+    "UNT#     ";
             this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
             // lblClose
@@ -1386,7 +1255,7 @@
             this.lblClose.AutoSize = true;
             this.lblClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
-            this.lblClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
+            this.lblClose.ForeColor = System.Drawing.Color.IndianRed;
             this.lblClose.Location = new System.Drawing.Point(868, -2);
             this.lblClose.Name = "lblClose";
             this.lblClose.Size = new System.Drawing.Size(25, 25);
@@ -1402,6 +1271,156 @@
             this.chkLogFolderSelect.Size = new System.Drawing.Size(104, 24);
             this.chkLogFolderSelect.TabIndex = 4;
             this.chkLogFolderSelect.Visible = false;
+            // 
+            // deleteSendData
+            // 
+            this.deleteSendData.BackColor = System.Drawing.Color.White;
+            this.deleteSendData.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.deleteSendData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.deleteSendData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteSendData.Image = ((System.Drawing.Image)(resources.GetObject("deleteSendData.Image")));
+            this.deleteSendData.Location = new System.Drawing.Point(210, 3);
+            this.deleteSendData.Name = "deleteSendData";
+            this.deleteSendData.Size = new System.Drawing.Size(27, 27);
+            this.deleteSendData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.deleteSendData.TabIndex = 39;
+            this.deleteSendData.TabStop = false;
+            this.toolTip1.SetToolTip(this.deleteSendData, "Delete sent data from imported list");
+            this.deleteSendData.Click += new System.EventHandler(this.lblRemoveSentData_Click);
+            this.deleteSendData.DoubleClick += new System.EventHandler(this.deleteSendData_DoubleClick);
+            // 
+            // btnView
+            // 
+            this.btnView.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnView.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnView.Image = ((System.Drawing.Image)(resources.GetObject("btnView.Image")));
+            this.btnView.Location = new System.Drawing.Point(599, 446);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(25, 23);
+            this.btnView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnView.TabIndex = 39;
+            this.btnView.TabStop = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // btnImportHtml
+            // 
+            this.btnImportHtml.BackColor = System.Drawing.Color.IndianRed;
+            this.btnImportHtml.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.btnImportHtml.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnImportHtml.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImportHtml.Image = global::EmailBOT.Properties.Resources.import;
+            this.btnImportHtml.Location = new System.Drawing.Point(600, 345);
+            this.btnImportHtml.Name = "btnImportHtml";
+            this.btnImportHtml.Size = new System.Drawing.Size(16, 16);
+            this.btnImportHtml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnImportHtml.TabIndex = 39;
+            this.btnImportHtml.TabStop = false;
+            this.btnImportHtml.Click += new System.EventHandler(this.btnImportHtml_Click);
+            // 
+            // btnImportContent
+            // 
+            this.btnImportContent.BackColor = System.Drawing.Color.IndianRed;
+            this.btnImportContent.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.btnImportContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnImportContent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImportContent.Image = global::EmailBOT.Properties.Resources.import;
+            this.btnImportContent.Location = new System.Drawing.Point(603, 188);
+            this.btnImportContent.Name = "btnImportContent";
+            this.btnImportContent.Size = new System.Drawing.Size(16, 16);
+            this.btnImportContent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnImportContent.TabIndex = 39;
+            this.btnImportContent.TabStop = false;
+            this.btnImportContent.Click += new System.EventHandler(this.btnImportContent_Click);
+            // 
+            // btnSelectSender
+            // 
+            this.btnSelectSender.BackColor = System.Drawing.Color.IndianRed;
+            this.btnSelectSender.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.btnSelectSender.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSelectSender.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelectSender.Image = global::EmailBOT.Properties.Resources.import;
+            this.btnSelectSender.Location = new System.Drawing.Point(382, 65);
+            this.btnSelectSender.Name = "btnSelectSender";
+            this.btnSelectSender.Size = new System.Drawing.Size(16, 16);
+            this.btnSelectSender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSelectSender.TabIndex = 39;
+            this.btnSelectSender.TabStop = false;
+            this.btnSelectSender.Click += new System.EventHandler(this.btnSelecSender_Click);
+            // 
+            // importSubject
+            // 
+            this.importSubject.BackColor = System.Drawing.Color.IndianRed;
+            this.importSubject.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.importSubject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.importSubject.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.importSubject.Location = new System.Drawing.Point(107, 92);
+            this.importSubject.Name = "importSubject";
+            this.importSubject.Size = new System.Drawing.Size(16, 16);
+            this.importSubject.TabIndex = 39;
+            this.importSubject.TabStop = false;
+            this.toolTip1.SetToolTip(this.importSubject, "Import txt file or Set subject with commas for random selection\r\nExample : Subjec" +
+        "t1, Subject2, Subject3\r\n");
+            this.importSubject.Visible = false;
+            this.importSubject.Click += new System.EventHandler(this.importSubject_Click);
+            // 
+            // importName
+            // 
+            this.importName.BackColor = System.Drawing.Color.IndianRed;
+            this.importName.BackgroundImage = global::EmailBOT.Properties.Resources.import;
+            this.importName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.importName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.importName.Location = new System.Drawing.Point(351, 39);
+            this.importName.Name = "importName";
+            this.importName.Size = new System.Drawing.Size(16, 16);
+            this.importName.TabIndex = 40;
+            this.importName.TabStop = false;
+            this.toolTip1.SetToolTip(this.importName, "Import txt file or Set name with commas for random selection\r\nExample : Subject1," +
+        " Subject2, Subject3");
+            this.importName.Click += new System.EventHandler(this.importName_Click);
+            // 
+            // rdo587
+            // 
+            this.rdo587.AutoSize = true;
+            this.rdo587.Checked = true;
+            this.rdo587.Location = new System.Drawing.Point(15, 1);
+            this.rdo587.Name = "rdo587";
+            this.rdo587.Size = new System.Drawing.Size(53, 21);
+            this.rdo587.TabIndex = 58;
+            this.rdo587.TabStop = true;
+            this.rdo587.Text = "587";
+            this.rdo587.UseVisualStyleBackColor = true;
+            // 
+            // rdo25
+            // 
+            this.rdo25.AutoSize = true;
+            this.rdo25.Location = new System.Drawing.Point(72, 1);
+            this.rdo25.Name = "rdo25";
+            this.rdo25.Size = new System.Drawing.Size(44, 21);
+            this.rdo25.TabIndex = 58;
+            this.rdo25.Text = "25";
+            this.rdo25.UseVisualStyleBackColor = true;
+            // 
+            // rdo465
+            // 
+            this.rdo465.AutoSize = true;
+            this.rdo465.Location = new System.Drawing.Point(130, 1);
+            this.rdo465.Name = "rdo465";
+            this.rdo465.Size = new System.Drawing.Size(53, 21);
+            this.rdo465.TabIndex = 58;
+            this.rdo465.Text = "465";
+            this.rdo465.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rdo465);
+            this.panel2.Controls.Add(this.rdo587);
+            this.panel2.Controls.Add(this.rdo25);
+            this.panel2.Location = new System.Drawing.Point(341, 10);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(190, 20);
+            this.panel2.TabIndex = 59;
             // 
             // task1
             // 
@@ -1432,12 +1451,6 @@
             this.pnlSendValueFromPerSender.ResumeLayout(false);
             this.pnlSendValueFromPerSender.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtChangeSenderAfterSendThis)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImportHtml)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImportContent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSelectSender)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importSubject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelay)).EndInit();
             this.pnlAttach.ResumeLayout(false);
             this.pnlAttach.PerformLayout();
@@ -1453,6 +1466,14 @@
             this.pnlTitle_Contact.ResumeLayout(false);
             this.pnlTitle_Contact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteSendData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImportHtml)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImportContent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSelectSender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importSubject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importName)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1494,10 +1515,6 @@
         private System.Windows.Forms.RadioButton chkPdf;
         private System.Windows.Forms.RadioButton chkHtmlToImage;
         private System.Windows.Forms.RadioButton chkHtmltemplate;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Panel panel1;
@@ -1543,12 +1560,18 @@
         private System.Windows.Forms.CheckBox chkAllRandomChangeAfterSent;
         private System.Windows.Forms.LinkLabel lnkViewEmailList;
         private System.Windows.Forms.Panel pnlBottom;
-        private System.Windows.Forms.CheckBox chkSubjectFaker;
         private System.Windows.Forms.CheckBox chkRandomMap;
         private System.Windows.Forms.CheckBox chkEnableSSL;
         private System.Windows.Forms.CheckBox chkIsBottomBody;
-        private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.TextBox txtMessageHtml;
         private System.Windows.Forms.NumericUpDown txtRandomMapValue;
+        private System.Windows.Forms.CheckBox chkImportSubject;
+        private System.Windows.Forms.CheckBox chkBodyContentImport;
+        private System.Windows.Forms.CheckBox chkAddLink;
+        private System.Windows.Forms.RichTextBox txtMessageHtml;
+        private System.Windows.Forms.RichTextBox txtMessage;
+        private System.Windows.Forms.RadioButton rdo465;
+        private System.Windows.Forms.RadioButton rdo25;
+        private System.Windows.Forms.RadioButton rdo587;
+        private System.Windows.Forms.Panel panel2;
     }
 }

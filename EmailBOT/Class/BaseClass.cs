@@ -36,7 +36,7 @@ namespace EmailBOT.Class
         }
         public static void AddToDataTable(string date)
         {
-            datatable = BaseClass.DataTableData($@"Select id,row_number() over (order by Id) SL,  Date,SenderId,Name,Content,Subject, Status,Sent,Host,Port,UserName,Password  from senderInfo where Date = '{date}' order by id");
+            datatable = BaseClass.DataTableData($@"Select id,row_number() over (order by Id) SL,  Date,SenderId,Name,Content,Subject, Status,Sent,Host,UserName,Password from senderInfo where Date = '{date}' order by id");
         }
         public static void GridViewBind(DataGridView ob, String sql)
         {
@@ -380,79 +380,79 @@ namespace EmailBOT.Class
 
         }
         // convert html source to image 
-        public static void ConvertHtmlToImage(string htmlSource, string imageName)
-        {
-            try
-            {
-                var htmlToImageConv = new NReco.ImageGenerator.HtmlToImageConverter();
-                htmlToImageConv.Width = 595; // set width of A4 size in pixels at 72 dpi
-                //htmlToImageConv.Height = 942; // set height of A4 size in pixels at 72 dpi
-                var jpegBytes = htmlToImageConv.GenerateImage(htmlSource, NReco.ImageGenerator.ImageFormat.Jpeg);
-                using (var ms = new MemoryStream(jpegBytes))
-                {
-                    using (var fs = new FileStream("ImageFile/" + imageName + ".jpg", FileMode.Create))
-                    {
-                        ms.WriteTo(fs);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "\n Your html are not correct format.");
-            }
-        }
-        public static string ConvertHtmlToPdf(string htmlSource, string pdfName)
-        {
-            try
-            {
-                var htmlToPdf = new HtmlToPdfConverter();
+        //public static void ConvertHtmlToImage(string htmlSource, string imageName)
+        //{
+        //    try
+        //    {
+        //        var htmlToImageConv = new NReco.ImageGenerator.HtmlToImageConverter();
+        //        htmlToImageConv.Width = 595; // set width of A4 size in pixels at 72 dpi
+        //        //htmlToImageConv.Height = 942; // set height of A4 size in pixels at 72 dpi
+        //        var jpegBytes = htmlToImageConv.GenerateImage(htmlSource, NReco.ImageGenerator.ImageFormat.Jpeg);
+        //        using (var ms = new MemoryStream(jpegBytes))
+        //        {
+        //            using (var fs = new FileStream("ImageFile/" + imageName + ".jpg", FileMode.Create))
+        //            {
+        //                ms.WriteTo(fs);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message + "\n Your html are not correct format.");
+        //    }
+        //}
+        //public static string ConvertHtmlToPdf(string htmlSource, string pdfName)
+        //{
+        //    try
+        //    {
+        //        var htmlToPdf = new HtmlToPdfConverter();
                
-                //htmlToPdf.Width = 595; // set width of A4 size in pixels at 72 dpi
-                //htmlToPdf.Height = 842; // set height of A4 size in pixels at 72 dpi
-                var pdfBytes = htmlToPdf.GeneratePdf(htmlSource);
-                string path = Path.Combine("PdfFile", pdfName + ".pdf");
-                using (var ms = new MemoryStream(pdfBytes))
-                {
-                    using (var fs = new FileStream(path, FileMode.Create))
-                    {
-                        ms.WriteTo(fs);
-                    }
-                }
-                return path;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return "";
-            }
-        }
-        public static void ConvertImageToPdf(string pdfName, string imageName)
-        {
-            try
-            {
-                Document document = new Document(iTextSharp.text.PageSize.A4, 0f ,0f, 0f, 0f);
-                string path = Path.Combine("PdfFile", pdfName + ".pdf");
-                using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
-                {
-                    PdfWriter.GetInstance(document, stream);
-                    document.Open();
-                    using (var imageStream = new FileStream("ImageFile/" + imageName + ".jpg", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                    {
-                        var image = Image.GetInstance(imageStream);
-                        float maxWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                        float maxHeight = document.PageSize.Height - document.TopMargin - document.BottomMargin;
-                        if (image.Height > maxHeight || image.Width > maxWidth)
-                            image.ScaleToFit(maxWidth, maxHeight);
-                        document.Add(image);
-                    }
-                    document.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //        //htmlToPdf.Width = 595; // set width of A4 size in pixels at 72 dpi
+        //        //htmlToPdf.Height = 842; // set height of A4 size in pixels at 72 dpi
+        //        var pdfBytes = htmlToPdf.GeneratePdf(htmlSource);
+        //        string path = Path.Combine("PdfFile", pdfName + ".pdf");
+        //        using (var ms = new MemoryStream(pdfBytes))
+        //        {
+        //            using (var fs = new FileStream(path, FileMode.Create))
+        //            {
+        //                ms.WriteTo(fs);
+        //            }
+        //        }
+        //        return path;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //        return "";
+        //    }
+        //}
+        //public static void ConvertImageToPdf(string pdfName, string imageName)
+        //{
+        //    try
+        //    {
+        //        Document document = new Document(iTextSharp.text.PageSize.A4, 0f ,0f, 0f, 0f);
+        //        string path = Path.Combine("PdfFile", pdfName + ".pdf");
+        //        using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        //        {
+        //            PdfWriter.GetInstance(document, stream);
+        //            document.Open();
+        //            using (var imageStream = new FileStream("ImageFile/" + imageName + ".jpg", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        //            {
+        //                var image = Image.GetInstance(imageStream);
+        //                float maxWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+        //                float maxHeight = document.PageSize.Height - document.TopMargin - document.BottomMargin;
+        //                if (image.Height > maxHeight || image.Width > maxWidth)
+        //                    image.ScaleToFit(maxWidth, maxHeight);
+        //                document.Add(image);
+        //            }
+        //            document.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         private static Random random = new Random();
         public static string RandomString(int length, string tp)
@@ -590,7 +590,7 @@ namespace EmailBOT.Class
                         if (i == 0)
                             strings = values;
                         else
-                            strings += "," + values;
+                            strings += "|" + values;
                     }
                 }
                 return strings;

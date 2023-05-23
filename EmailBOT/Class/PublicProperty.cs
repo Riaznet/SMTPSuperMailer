@@ -19,7 +19,7 @@ namespace EmailBOT.Class
         internal static bool datacall = true;
         internal static int rowIndex = 0;
         internal static int lastSelected = 0;
-        internal const string version = "1.0";
+        internal const string version = "V2.1";
         internal static string name = "";
         internal static string UserId = "";
         internal static string OnlineConnection = "";
@@ -27,7 +27,7 @@ namespace EmailBOT.Class
         public static string SettingsName { get; internal set; }
         public static int MailChangingValue { get; internal set; }
         public static string[] MultiData { get; internal set; }
-        public static TextBox Message { get; internal set; }
+        public static RichTextBox Message { get; internal set; }
         public static TextBox MessageHtml { get; internal set; }
         public static SendersList SenderForm { get; internal set; }
         public static string DisplayName { get; internal set; }

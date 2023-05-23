@@ -117,56 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnView.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAa5JREFUSEvtlrlKRDEUhq8WiohLJaiPIDaWYqsgFi4PYGXjio2v6KioCO61PoEL
-        iuDyfzKBSzg5N2PEyg8+hmSS/OTm5M5U/7RZkPfyM9NXuS6LuZNWQMqPthuyCGtxzzX5Lgnflj/GWtwT
-        fiXcWtwzUBxuLe5ZpyjcWtwzhgonGDuqdmtxzxkZE8K5atlYi5eYjTW5xGysySVmE0+clrlw3vH8bOKJ
-        VvF49Ml+OSF36cglDvZ8kTuySxZjBVhyVeYk9EpeGAfyqW1LbskemUUc0HTG4/JMxvOCp3JMNhJP9M6Y
-        nYbQS7koB9ouyWvJdyeycef10JR7Ejhf2ldyiI4I+kL4Jh0e9YCUUxIOJW12mmJZMoYzd6kHoHfGj5Ix
-        PNoUg5IxD98th3ooemfMYozxgnncjKHSXeqhKSclcH1oU0gpViRjOn7UluFHnntKmwKyimtY3krGrNLh
-        UQ9IeSG7JVeEe0rfjaSQOFNkpyH0TY5Kl9y/t1wl4OUQwi0J5fNcjsgk8zInnFfmrAR2zj3dl1T6s+RM
-        ebzslFDmNIb/NoSF8CM6/hLCj6uqan0BGEFvkyd4jtUAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>114, 17</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="label13.ToolTip" xml:space="preserve">
-    <value>Use tags to content (Text/Plain) or Content (html) ,Its change value randomly 
-Example : Hello , your invoice number is #INVOICE# 
-Output 1 : Hello , your invoice number is INV/HRY/10845454
-Output 2 : Hello , your invoice number is INV/ERS/33664365
-</value>
-  </data>
-  <data name="deleteSendData.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAv5JREFUaEPtmUtPE1EYhlnBjwD/ACTVsqZAp0VbLkEERCyKBFTUQlSIC6Nxoztc
-        uCCuwD9h/AkCq4IJwQVG06mJJoXe6GXamX7O1O9IczhE+DhySuKTPIHMO9PzcFk0aZ0s3gA0LGVhdjln
-        rS5lrb3lXBmq/X3NWn2XhRnnXnysNnibhcbFlLW+mC7DkUxZEecZfFwtzm9zIWGuv05YcBwXds1ITfwl
-        XsbN2VdxEyjaz4bxZdTx/Ke5ZgvMZz/M90/jB/89XsShyd4+VN9ru4KzOuZjxcz89xIwn+jQhNMBHsfg
-        XPW9c7FiGid1hKMlqBYvH8px7//nTH0tQrV4+VCOe/+RCX0p9IS2jdjYtgE1rn59uxDE7H0Gtwx98LMB
-        Z8ItI4rZ+/RsFnRbOAt2bxYO/gDaRiHo+5TXbaGW1TbyUd96PoDZf2fufhlUihl0Hk2XQaWYQefhXQtU
-        ihl0Zm9boFLMoBOeMkGlmEHnwaQJKsUMOvcmSiByZCAD7gs6tLr1yveydyZm0Jm+VQKRbvvglpZvFVvd
-        Mek7EzPo3BkvgUh2OFP2zsQMOlM37HeNAvkA2TsTM+hMjhVBJB8ge2diBp2JkAEi+QDZOxMz6IyPGiCS
-        D5C9MzGDzs1rBRDJB8jemZhBZ2ykACL5ANk7EzPohIbzIJIPkL0zMYPO6FAeRPIBsncmZtAZGcyDSD5A
-        9s7EDDpXB3Igkg+QvTMxg87Q5RyI5ANk70zMoHOlPwsi+QDZOxMz6Az0ZUEkHyB7Z2IGnf7ePRDJB8je
-        mZhBp697D0TyAbJ3JmbQ6Q1mQKTLFf1z+HmXLn1nYgad7kAGRHo7dioRLvtwb+eO9J2JGXSCF9OgUsyg
-        c6krDSrFDDpd/nTGFlTo96VTmEHH702t+bUUqNCnJU/+IaDXm5zRvClQopY8+cewgQA0dHYmI7ZwykaG
-        h6EeM06GpsUb2z3JSEd7Ek5D5yznTDxeDs3NUO/x7IY9nsRKW1siY38FmTqvafvROcM5C4/9T41TV/cL
-        kwQMKyOxBj4AAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>37</value>
   </metadata>
 </root>

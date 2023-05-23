@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Email.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="Name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="Content.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Credential.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Limit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -139,7 +130,7 @@
   <data name="deleteToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAv5JREFUaEPtmUtPE1EYhlnBjwD/ACTVsqZAp0VbLkEERCyKBFTUQlSIC6Nxoztc
+        DAAACwwBP0AiyAAAAv5JREFUaEPtmUtPE1EYhlnBjwD/ACTVsqZAp0VbLkEERCyKBFTUQlSIC6Nxoztc
         uCCuwD9h/AkCq4IJwQVG06mJJoXe6GXamX7O1O9IczhE+DhySuKTPIHMO9PzcFk0aZ0s3gA0LGVhdjln
         rS5lrb3lXBmq/X3NWn2XhRnnXnysNnibhcbFlLW+mC7DkUxZEecZfFwtzm9zIWGuv05YcBwXds1ITfwl
         XsbN2VdxEyjaz4bxZdTx/Ke5ZgvMZz/M90/jB/89XsShyd4+VN9ru4KzOuZjxcz89xIwn+jQhNMBHsfg

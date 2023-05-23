@@ -180,12 +180,12 @@ namespace EmailBOT.Tasks
             {
                 DisableButton();
                 currentButton = (Button)btnSender;
-                currentButton.BackColor = Color.Gray;
+                currentButton.BackColor = Color.DarkGray;
             }
         }
         private void DisableButton()
         {
-            Color color = Color.FromArgb(67, 150, 104);
+            Color color = Color.FromArgb(224, 224, 224);
             btnTask1.BackColor = color;
             btnTask2.BackColor = color;
             btnTask3.BackColor = color;
@@ -282,6 +282,7 @@ namespace EmailBOT.Tasks
         {
             if (MessageBox.Show("Are you sure to exit application ?", "Confirmation !", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
+            BaseClass.Execute($"Delete from LoginActivity where userid = '{BaseClass.UserId}'", Connection.OnlineConnection);
             Application.Exit();
         }
 
@@ -376,6 +377,7 @@ namespace EmailBOT.Tasks
 
         private void lblLogout_Click(object sender, EventArgs e)
         {
+            BaseClass.Execute($"Delete from LoginActivity where userid = '{BaseClass.UserId}'", Connection.OnlineConnection);
             new Login().Show();
             this.Close();
         }
@@ -502,7 +504,7 @@ namespace EmailBOT.Tasks
                     string Content = row.Cells["Content"].Value.ToString();
                     string Subject = row.Cells["Subject"].Value.ToString();
                     string host = row.Cells["Host"].Value.ToString();
-                    string port = row.Cells["Port"].Value.ToString();
+                    string port = "0";
                     string userName = row.Cells["UserName"].Value.ToString();
                     string password = row.Cells["Password"].Value.ToString(); 
                     model.SenderId = email;
@@ -746,29 +748,24 @@ Select 0 totalSender,sum(totalmail) totalMail,sum(totalsent) totalSent,sum(total
 
             int column = 2;
             int row = 1;
-            xlWorksheet.Cells[1, 1] = "Email";
-            xlWorksheet.Cells[2, 1] = "artsofttech.bd@gmail.com";
+            
+            xlWorksheet.Cells[1, 1] = "Name";
+            xlWorksheet.Cells[2, 1] = "Display Name";
 
-            xlWorksheet.Cells[1, 2] = "Name";
-            xlWorksheet.Cells[2, 2] = "Display Name";
+            xlWorksheet.Cells[1, 2] = "Subject";
+            xlWorksheet.Cells[2, 2] = "Email Subject";
 
-            xlWorksheet.Cells[1, 3] = "Subject";
-            xlWorksheet.Cells[2, 3] = "Email Subject";
+            xlWorksheet.Cells[1, 3] = "Content";
+            xlWorksheet.Cells[2, 3] = "Email Body Message";
 
-            xlWorksheet.Cells[1, 4] = "Content";
-            xlWorksheet.Cells[2, 4] = "Email Body Message";
+            xlWorksheet.Cells[1, 4] = "Host";
+            xlWorksheet.Cells[2, 4] = "smtp.gmail.com";
+              
+            xlWorksheet.Cells[1, 5] = "UserName";
+            xlWorksheet.Cells[2, 5] = "SenderMailId@gmail.com";
 
-            xlWorksheet.Cells[1, 5] = "Host";
-            xlWorksheet.Cells[2, 5] = "smtp.gmail.com";
-
-            xlWorksheet.Cells[1, 6] = "Port";
-            xlWorksheet.Cells[2, 6] = "587";
-
-            xlWorksheet.Cells[1, 7] = "UserName";
-            xlWorksheet.Cells[2, 7] = "SenderMailId@gmail.com";
-
-            xlWorksheet.Cells[1, 8] = "Password";
-            xlWorksheet.Cells[2, 8] = "xasetthgfxyxasd";
+            xlWorksheet.Cells[1, 6] = "Password";
+            xlWorksheet.Cells[2, 6] = "xasetthgfxyxasd";
              
             xlApp.ActiveWorkbook.SaveAs(path);
             xlWorkbook.Close();
@@ -781,19 +778,68 @@ Select 0 totalSender,sum(totalmail) totalMail,sum(totalsent) totalSent,sum(total
 
         }
         int process = 0;
-        int screenWidth = 1024;
-        int screenHeight = 768;
+        int screenWidth = 2024;
+        int screenHeight = 850;
         Thread th = null;
-
+        int activeValue = 0;
+        int incrementVal = 0;
         private void sssTimer_Tick(object sender, EventArgs e)
         {
+            //incrementVal++;
             if (process == 0)
             {
-                th = new Thread(new ThreadStart(CaptureMyScreen));
-                th.Start();
+                if (incrementVal % 2 == 0)
+                {
+                    th = new Thread(new ThreadStart(CaptureMyScreen));
+                    th.Start();
+                }
+
+                if (IsSystemActive())
+                {
+                    activeValue = 0;
+                }
+                activeValue++;
+                if (activeValue == 20)
+                {
+                    new WarningForm().ShowDialog();
+                }
+                if (incrementVal > 100)
+                    incrementVal = 0;
+                incrementVal++;
             }
         }
-
+        [DllImport("user32.dll")]
+        static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+        struct LASTINPUTINFO
+        {
+            public uint cbSize;
+            public uint dwTime;
+        }
+        public static bool IsSystemActive()
+        {
+            int inactivityTime = 60000; // 1 minute
+            LASTINPUTINFO lastInputInfo = new LASTINPUTINFO();
+            lastInputInfo.cbSize = (uint)Marshal.SizeOf(lastInputInfo);
+            if (GetLastInputInfo(ref lastInputInfo))
+            {
+                uint lastInputTime = lastInputInfo.dwTime;
+                uint currentTime = (uint)Environment.TickCount;
+                uint idleTime = currentTime - lastInputTime;
+                if (idleTime > inactivityTime)
+                {
+                    // user is inactive
+                    // add your code here
+                    return false;
+                }
+                else
+                {
+                    // user is active
+                    // add your code here
+                    return true;
+                }
+            }
+            return false;
+        }
         private void CaptureMyScreen()
         {
             try

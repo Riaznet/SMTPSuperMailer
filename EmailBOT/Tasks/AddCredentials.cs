@@ -172,13 +172,13 @@ namespace EmailBOT.Tasks
             {
                 if (!isValidate())
                     return;
-                model.SenderId = txtEmail.Text;
+                model.SenderId = txtUserName.Text;
                 model.Name = txtName.Text;
                 model.Content = txtContent.Text;
                 model.Subject = txtSubject.Text;
                 model.Date = dtpDate.Text;
                 model.Host = txtHost.Text;
-                model.Port = Convert.ToInt32(txtPort.Text);
+                model.Port = Convert.ToInt32(txtPort.Text==""?"0": txtPort.Text);
                 model.UserName = txtUserName.Text;
                 model.Password = txtPassword.Text;
                 if (btnAdd.Text == "Add")
@@ -213,24 +213,12 @@ namespace EmailBOT.Tasks
         {
             try
             {
-                if (txtEmail.Text == "")
-                {
-                    MessageBox.Show("Sender id required.");
-                    txtEmail.Focus();
-                    return false;
-                }
-                else if (txtHost.Text == "")
+                 if (txtHost.Text == "")
                 {
                     MessageBox.Show("Host required.");
                     txtHost.Focus();
                     return false;
-                }
-                else if (Convert.ToInt32(txtPort.Text) <= 0)
-                {
-                    MessageBox.Show("Invalid Port");
-                    txtPort.Focus();
-                    return false;
-                }
+                } 
                 else if (txtUserName.Text == "")
                 {
                     MessageBox.Show("User Name required.");
@@ -276,6 +264,11 @@ namespace EmailBOT.Tasks
         {
             BaseClass.AddToDataTable(dtpDate.Text);
             this.Close();
+        }
+
+        private void txtName_Leave(object sender, EventArgs e)
+        {
+            txtUserName.Text = txtName.Text;
         }
     }
 }

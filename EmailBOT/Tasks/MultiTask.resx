@@ -144,9 +144,6 @@
   <metadata name="Hosts.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Ports.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="UserNames.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -165,11 +162,14 @@
   <metadata name="ValidKeyChecker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>366, 17</value>
   </metadata>
+  <metadata name="sssTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>656, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAA4RJREFUaEPtWltP1EAUrvq/jNcYfwAJLaLSAnIJRESIEsJFQEOQm4n4oi++8KIP
+        DAAACwwBP0AiyAAAA4RJREFUaEPtWltP1EAUrvq/jNcYfwAJLaLSAnIJRESIEsJFQEOQm4n4oi++8KIP
         +oBAQGNMjNF4AYmEEEIwBgWMu+1ugd1te5wzTLnsDLuIu9tW+ZIvIZ0z53xfO2eWdCqJAHl5R0Jqwcmw
         pvTpqjIc1uTPuqbM5ZK05kbt3lBx/globj7M5KWGXqScDavKFEkCfiIaChfLZ5hMHiBJh3RNbiN33REl
         8AOpNlVpRa1M9hZQvGiSPym3MNkboMvGx3c+mag1rOWfpuKxYf245tOR9MQkapdwtxEFBIEhreCYRLdK
@@ -190,7 +190,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAA4RJREFUaEPtWltP1EAUrvq/jNcYfwAJLaLSAnIJRESIEsJFQEOQm4n4oi++8KIP
+        DAAACwwBP0AiyAAAA4RJREFUaEPtWltP1EAUrvq/jNcYfwAJLaLSAnIJRESIEsJFQEOQm4n4oi++8KIP
         +oBAQGNMjNF4AYmEEEIwBgWMu+1ugd1te5wzTLnsDLuIu9tW+ZIvIZ0z53xfO2eWdCqJAHl5R0Jqwcmw
         pvTpqjIc1uTPuqbM5ZK05kbt3lBx/globj7M5KWGXqScDavKFEkCfiIaChfLZ5hMHiBJh3RNbiN33REl
         8AOpNlVpRa1M9hZQvGiSPym3MNkboMvGx3c+mag1rOWfpuKxYf245tOR9MQkapdwtxEFBIEhreCYRLdK
@@ -208,9 +208,6 @@
         iDUJh1ADHmiLP7eRpN/RTow/oMYJZgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="sssTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>656, 17</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAMDAAAAEAIACoJQAAFgAAACgAAAAwAAAAYAAAAAEAIAAAAAAAACQAABMLAAATCwAAAAAAAAAA

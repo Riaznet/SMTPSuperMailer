@@ -33,11 +33,19 @@
             this.dgvSelectedSender = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credential = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Limit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedSender)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,20 +56,31 @@
             this.dgvSelectedSender.AllowUserToDeleteRows = false;
             this.dgvSelectedSender.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelectedSender.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ids,
+            this.SL,
+            this.Date,
             this.Email,
             this.Name,
+            this.Subject,
+            this.Sent,
             this.Content,
-            this.Credential,
-            this.Limit});
+            this.status,
+            this.Host,
+            this.Port,
+            this.UserName,
+            this.Password});
+            this.dgvSelectedSender.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvSelectedSender.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSelectedSender.Location = new System.Drawing.Point(0, 0);
             this.dgvSelectedSender.Name = "dgvSelectedSender";
             this.dgvSelectedSender.ReadOnly = true;
             this.dgvSelectedSender.RowHeadersVisible = false;
             this.dgvSelectedSender.RowTemplate.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgvSelectedSender.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSelectedSender.RowTemplate.Height = 25;
             this.dgvSelectedSender.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelectedSender.Size = new System.Drawing.Size(532, 546);
-            this.dgvSelectedSender.TabIndex = 0;
+            this.dgvSelectedSender.Size = new System.Drawing.Size(688, 546);
+            this.dgvSelectedSender.TabIndex = 25;
             this.dgvSelectedSender.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSelectedSender_CellMouseUp);
             // 
             // contextMenuStrip1
@@ -80,55 +99,123 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // ids
+            // 
+            this.ids.DataPropertyName = "Id";
+            this.ids.FillWeight = 30F;
+            this.ids.HeaderText = "Id";
+            this.ids.Name = "ids";
+            this.ids.ReadOnly = true;
+            this.ids.Visible = false;
+            this.ids.Width = 30;
+            // 
+            // SL
+            // 
+            this.SL.DataPropertyName = "SL";
+            this.SL.FillWeight = 30F;
+            this.SL.HeaderText = "SL";
+            this.SL.Name = "SL";
+            this.SL.ReadOnly = true;
+            this.SL.Visible = false;
+            this.SL.Width = 30;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.FillWeight = 60F;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Visible = false;
+            // 
             // Email
             // 
             this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
+            this.Email.HeaderText = "SenderId";
             this.Email.Name = "Email";
             this.Email.ReadOnly = true;
             // 
             // Name
             // 
+            this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Name.DataPropertyName = "Name";
-            this.Name.FillWeight = 90F;
             this.Name.HeaderText = "Name";
             this.Name.Name = "Name";
             this.Name.ReadOnly = true;
+            this.Name.Width = 130;
+            // 
+            // Subject
+            // 
+            this.Subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Subject.DataPropertyName = "Subject";
+            this.Subject.HeaderText = "Subject";
+            this.Subject.Name = "Subject";
+            this.Subject.ReadOnly = true;
+            this.Subject.Width = 140;
+            // 
+            // Sent
+            // 
+            this.Sent.DataPropertyName = "Sent";
+            this.Sent.FillWeight = 60F;
+            this.Sent.HeaderText = "Sent";
+            this.Sent.Name = "Sent";
+            this.Sent.ReadOnly = true;
+            this.Sent.Width = 60;
             // 
             // Content
             // 
-            this.Content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Content.DataPropertyName = "Content";
-            this.Content.FillWeight = 120F;
             this.Content.HeaderText = "Content";
             this.Content.Name = "Content";
             this.Content.ReadOnly = true;
-            this.Content.Width = 130;
+            this.Content.Visible = false;
             // 
-            // Credential
+            // status
             // 
-            this.Credential.DataPropertyName = "Credential";
-            this.Credential.HeaderText = "Credential";
-            this.Credential.Name = "Credential";
-            this.Credential.ReadOnly = true;
-            this.Credential.Visible = false;
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Visible = false;
             // 
-            // Limit
+            // Host
             // 
-            this.Limit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Limit.DataPropertyName = "Limit";
-            this.Limit.FillWeight = 50F;
-            this.Limit.HeaderText = "Limit";
-            this.Limit.Name = "Limit";
-            this.Limit.ReadOnly = true;
-            this.Limit.Width = 50;
+            this.Host.DataPropertyName = "Host";
+            this.Host.HeaderText = "Host";
+            this.Host.Name = "Host";
+            this.Host.ReadOnly = true;
+            this.Host.Visible = false;
+            // 
+            // Port
+            // 
+            this.Port.DataPropertyName = "Port";
+            this.Port.HeaderText = "Port";
+            this.Port.Name = "Port";
+            this.Port.ReadOnly = true;
+            this.Port.Visible = false;
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "UserName";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Visible = false;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
             // 
             // SelectedSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 546);
+            this.ClientSize = new System.Drawing.Size(688, 546);
             this.Controls.Add(this.dgvSelectedSender);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -147,10 +234,18 @@
         private System.Windows.Forms.DataGridView dgvSelectedSender;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ids;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sent;
         private System.Windows.Forms.DataGridViewTextBoxColumn Content;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Credential;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Limit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Host;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Port;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
     }
 }

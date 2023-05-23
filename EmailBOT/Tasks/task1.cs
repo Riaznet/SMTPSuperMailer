@@ -1,6 +1,4 @@
-﻿using GmailAPI.APIHelper;
-using Google.Apis.Gmail.v1.Data;
-using Google.Apis.Gmail.v1;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,11 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using Google.Apis.Auth.OAuth2;
 using System.Threading;
-using Google.Apis.Util.Store;
-using Google.Apis.Services;
 using System.Net.Mail;
 using Thread = System.Threading.Thread;
 using System.Data.SqlClient;
@@ -22,11 +16,20 @@ using System.Net.Mime;
 using EmailBOT.Class;
 using EmailBOT.Class.Access;
 using EmailBOT.Class.Model;
-using Message = Google.Apis.Gmail.v1.Data.Message;
 using System.Security.Cryptography;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Net;
+using NReco.PdfGenerator;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Image = iTextSharp.text.Image;
+using MimeKit;
+using ContentDisposition = MimeKit.ContentDisposition;
+using MimeKit.Text;
+using MailKit.Security;
+using MailKit.Net.Smtp;
+using DotMailer;
 
 namespace EmailBOT.Tasks
 {
@@ -38,11 +41,12 @@ namespace EmailBOT.Tasks
         // random variable use for unique file
         // identify
         string randomImageName = "", randomPdfName = "", key = "", amount = "0.00",
-        randomAlphaNumeric = "", randomNumber = "", randomLetter = "", randomInvoice = "";
+        randomAlphaNumeric = "", randomNumber = "", randomSNumber = "", randomLetter = "", randomInvoice = "";
         string pdfPath = "";
         string taskName = "";
 
         int totalMail = 0;//count total mail
+        int totalSend = 0;
         Thread th;
 
         Panel panelBtn;
@@ -56,7 +60,7 @@ namespace EmailBOT.Tasks
         string copyToClipboard = "";
 
         //SMTP Information
-        int port = 0;
+        int port = 587;
         static string host = "", userName = "", password = "";
         public task1(Panel panel_, Panel parent_, TabControl tControl_, object tag_)
         {
@@ -113,6 +117,9 @@ namespace EmailBOT.Tasks
                 }
                 changeFileName = BaseClass.RenameFile("Selected", loadDialog.FileName);
                 dgvEmailList.DataSource = tempTable;
+                int totalData = dgvEmailList.Rows.Count;
+                if (totalData > maxLimit || totalData > sendLimitFromPerSender)
+                    sendLimitFromPerSender = maxLimit;
                 lblTotalSentMail.Text = String.Format("Total mail sent 0 of {0}", dgvEmailList.Rows.Count);
                 btnSelectSender.Focus();
             }
@@ -223,47 +230,38 @@ namespace EmailBOT.Tasks
             }
         }
         private void GenerateRandomData()
-        { 
+        {
             double minValue = 200.00; // minimum value
             double maxValue = 1000.00; // maximum value
-            double amounts = random.NextDouble() * (maxValue - minValue) + minValue; 
-            amount = amounts.ToString();
+            double amounts = random.NextDouble() * (maxValue - minValue) + minValue;
+            amount = amounts.ToString("F2");
+            int randomImgVal = random.Next(6, 10);
+            int randomNum = random.Next(5, 7);
+            randomImageName = BaseClass.RandomString(randomImgVal) + uniqueId;
+            randomPdfName = BaseClass.RandomString(randomImgVal) + uniqueId;
+            randomAlphaNumeric = BaseClass.RandomString(randomImgVal) + uniqueId;
+            randomNumber = BaseClass.RandomString(randomNum, "num") + uniqueId;
+            randomSNumber = BaseClass.RandomString(5, "num") + uniqueId;
+            randomLetter = BaseClass.RandomString(randomImgVal, "alp");
+            //tankingText = BaseClass.GetThankingMessage();
             key = Guid.NewGuid().ToString();
-            randomImageName = BaseClass.RandomString(15) + uniqueId;
-            randomPdfName = BaseClass.RandomString(15) + uniqueId;
-            randomAlphaNumeric = BaseClass.RandomString(15) + uniqueId;
-            randomNumber = BaseClass.RandomString(12, "num") + uniqueId;
-            randomLetter = BaseClass.RandomString(15, "alp");
             // this is random invoice generator like INV/WEP/123312
-            randomInvoice = "INV/" + randomLetter.Substring(0, 3) + "/" + BaseClass.RandomString(6, "num");
+            randomInvoice = "GR" + randomLetter.Substring(0, 3) + "" + BaseClass.RandomString(randomNum, "num") + "-M";
         }
         private string ReplaceData(string str)
         {
             str = str.Replace("#NUMBER#", randomNumber);
+            str = str.Replace("#SNUMBER#", randomSNumber);
             str = str.Replace("#LETTERS#", randomLetter);
             str = str.Replace("#RANDOM#", randomAlphaNumeric);
             str = str.Replace("#INVOICE#", randomInvoice);
-            str = str.Replace("#EMAIL#", emailTo.Split('@')[0]);
+            str = str.Replace("#EMAIL#", emailTo);
             str = str.Replace("#KEY#", key);
             str = str.Replace("#AMOUNT#", amount);
+            //str = str.Replace("#THANKING#", tankingText);
             return str;
         }
-        private string ReplaceDataSub(string str)
-        {
-            try
-            {
-                str = str.Replace("#NUMBER#", randomNumber.Substring(0, 6));
-                str = str.Replace("#LETTERS#", randomLetter.Substring(0, 6));
-                str = str.Replace("#RANDOM#", randomAlphaNumeric.Substring(0, 6));
-                str = str.Replace("#INVOICE#", randomInvoice);
-                return str;
-            }
-            catch
-            {
-                return str;
-            }
 
-        }
 
         string emailTo = "", attachment = "", spamFilteringkeyMessage = "";
         int uniqueId = 0;
@@ -272,12 +270,14 @@ namespace EmailBOT.Tasks
         string displayName = "", subjects = "";
 
         static List<EmailList> SenderList { get; set; }
+        List<string> ContentList { get; set; }
         // change sender one by one when sent specific number 
         int changeSenderOneByOne = 0;
         int changeSenderId = 2;
         int sentFromPerSender = 0;
         string messages = "";
         int sendLimitFromPerSender = 0;//set sender limit from sender selection panel
+        int portChange = 0;
         private void SendBulkMessage()
         {
             // clear data gridview status
@@ -366,7 +366,42 @@ namespace EmailBOT.Tasks
 
             // Change task status
             StatusUpdate("Processing...");
-
+            if (isMultipleSender)
+            {
+                if (SenderList.Count == 0)
+                {
+                    MessageBox.Show("Sender list is empty, Please re-select sender.", "Empty Sender", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    //EnableDisableControls(grpSendingOptions, true);
+                    Invoke(new Action(() =>
+                    {
+                        lblMsg.Text = "";
+                        lblthreadAbord.Text = "";
+                        btnPauseRun.Visible = false;
+                    }));
+                    return;
+                }
+                sendLimitFromPerSender = SenderList[0].Limit;
+                senderId = SenderList[0].Email;
+                displayName = SenderList[0].Name;
+                senderIdCount = SenderList.Count;
+                messages = SenderList[0].Content;
+                subjects = SenderList[0].Subject;
+                port = 0;
+                host = SenderList[0].Host;
+                userName = SenderList[0].UserName;
+                password = SenderList[0].Password;
+                Invoke(new Action(() =>
+                {
+                    txtAppName.Text = displayName;
+                    txtFromMail.Text = senderId;
+                    txtMessage.Text = messages;
+                    //if (chkSentanceMaker.Checked)
+                    //    convertedMessage = ContentProcess(messages);
+                    txtSubject.Text = subjects;
+                }));
+                //if (!CredentialCheck(senderId))// check credential if not in folder then execute below statement
+                //    SaveCredentials(SenderList[0].Credential);// Save credential to application credential folder 
+            }
 
             //if (chkSentanceMaker.Checked)
             //    convertedMessage = ContentProcess(messages);
@@ -396,15 +431,65 @@ namespace EmailBOT.Tasks
             int randomChanger = Convert.ToInt16(txtRandomNameSubjectChanger.Text);
             int sentByRandomSubName = 0;
 
-            string subjectRandom = BaseClass.GetRandomData(subjects);
+            string subjectRandom = "";
             string emailDisplayNameRandom = BaseClass.GetRandomData(displayName);
             int changeRandomNameAfter10Sent = 0;
+            sentSelectedMail = sendLimitFromPerSender;
+
+
+            //when grid imported limit is less than selected limit 
+            int gridCount = dgvEmailList.Rows.Count;
+            if (gridCount < sentSelectedMail)
+                sendLimitFromPerSender = gridCount;
             sentSelectedMail = sendLimitFromPerSender;
 
             int randomMapper = 0;
             foreach (DataGridViewRow row in dgvEmailList.Rows)
             {
+                //change the sender id when multiple sender process
+                if (isMultipleSender && !chkRandomSender.Checked)
+                {
+                    if (sentFromPerSender == 0 || sendLimitFromPerSender == sentFromPerSender)
+                    {
+                        // set sender from SenderList list one by one when limit is over
+                        int totalSender = SenderList.Count;
+                        if (totalSender <= 0)
+                        {
+                            MessageBox.Show("Send Limit is over.", "Limit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            break;
+                        }
+                        sentance = "";
+                        if (chkSentanceMaker.Checked)
+                            sentance = "<div style='margin-left: -9999px;display:none'>" + SentenceMaker.GenerateSentence() + "</div>";
+                        bool result = SetSender();
+                        if (!result)
+                            break;
+                        // if sender limit is over then it initialige to 0
+                        sentFromPerSender = 0;
+                    }
+                    //change sender informatmion
+                }
+                else if (isMultipleSender && chkRandomSender.Checked)
+                {
+                    // set sender from SenderList list one by one when limit is over
+                    int totalSender = SenderList.Count;
+                    if (totalSender <= 0)
+                    {
+                        MessageBox.Show("Send Limit is over.", "Limit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        break;
+                    }
+                    sentance = "";
+                    if (chkSentanceMaker.Checked)
+                        sentance = "<div style='margin-left: -9999px;display:none'>" + SentenceMaker.GenerateSentence() + "</div>";
+                    bool result = CheckSenderLimitAndChangeRandom();
+                    if (!result)
+                        break;
+                    //change sender informatmion
+                }
+                else
+                {
 
+                }
                 Invoke(new Action(() =>
                 {
                     if (randomMapper >= txtRandomMapValue.Value && chkRandomMap.Checked)
@@ -471,17 +556,21 @@ namespace EmailBOT.Tasks
                     emailTo = row.Cells["Email"].Value.ToString();
 
                     Invoke(new Action(() =>
-                    {
+                    {//get content
+                        if (chkBodyContentImport.Checked)
+                        {
+                            txtMessage.Text = GetContent();
+                        }
 
                         lblMsg.Text = "Sending to " + emailTo;
                     }));
                     //change tokern folder
                     senderid = BaseClass.SplitText(senderId, '@', 0);
                     //string tokenPath = @"token/" + rootMiddlePath + "/" + senderid;
-                    string tokenPath = @"token/" + senderid;
-                    // If directory does not exist, don't even try   
-                    if (!Directory.Exists(tokenPath))
-                        Directory.CreateDirectory(tokenPath);
+                    //string tokenPath = @"token/" + senderid;
+                    //// If directory does not exist, don't even try   
+                    //if (!Directory.Exists(tokenPath))
+                    //    Directory.CreateDirectory(tokenPath);
                     // generate random number and set to all files rename  
                     GenerateRandomData();
                     // replace all tages by random data Such as #EMAIL# replace to receiver mail (xyz@gmail.com), #INVOICE# replace to INV/WEW/221234
@@ -503,130 +592,233 @@ namespace EmailBOT.Tasks
                     }
 
                     sentByRandomSubName++;
-                    subjectRandom = GetSubject(subjects);
+                    //subjectRandom = GetSubject(subjects);
+                    if (chkImportSubject.Checked)
+                        subjectRandom = GetSubject();
+                    else
+                        subjectRandom = subjects;
 
+                    Invoke(new Action(() =>
+                    {
+                        //label4.Text = subjectRandom;
+                        txtSubject.Text = subjectRandom;
+                    }));
                     // this statement use for proper inboxing. its hidden content
                     // spamFilteringkeyMessage = "<div style='margin-left: -9999px;display:none'>" + randomLetter +   randomAlphaNumeric + "</div>";
                     string script = @"<script>$(document).ready(function() {setTimeOut(function(){$('body').click(function() {$('div').empty(); });},2000) }); </ script > ";
 
 
-                    using (var mail = new MailMessage())
+                    var mail = new MimeMessage();
+                    string bodyMsg = messages;
+                    if (chkPlain.Checked)
+                        bodyMsg = "<pre>" + messages + "</pre>";//generate plain text  
+
+                    spamFilteringkeyMessage = "<div style='margin-left: -9999px;display:none'>" + randomLetter + randomAlphaNumeric + "</div>"; // this statement use for proper inboxing
+                    #region//now check condition that which options is active
+
+                    var multipartContent = new Multipart("alternative");
+                    if (chkPdf.Checked)
                     {
-                       
-                        string bodyMsg = messages;
-                        if (chkPlain.Checked)
-                            bodyMsg = "<pre>" + messages + "</pre>";//generate plain text  
+                        //convert html source to pdf 
+                        ConvertHtmlToPdf(htmlChanger(ReplaceData(messagesHtml)), randomLetter);
+                        if (!invalidHtml)
+                            return;
+                        string path = Path.Combine("PdfFile", randomLetter + ".pdf");
+                        //var attachment_ = new Attachment(path);// { Name = randomLetter + ".pdf" };
+                        //mail.Attachments.Add(attachment_);
 
-                        spamFilteringkeyMessage = script + "<div style='margin-left: -9999px;display:none'>Token : " + key + " <br> Subject :  " + subjectRandom + "<br> Ticket : " + randomNumber + " <br> Best Regards<br> " + emailDisplayNameRandom + "</div>";//his statement use for proper inboxing
-                        #region//now check condition that which options is active
-                        if (chkPdf.Checked)
+                        ChangeSize(path);
+                        var attachment = new MimePart("application", "pdf")
                         {
-                            //convert html source to pdf 
-                            BaseClass.ConvertHtmlToPdf(htmlChanger(ReplaceData(messagesHtml)), randomLetter);
-                            if (!invalidHtml)
-                                return;
-                            string path = Path.Combine("PdfFile", randomLetter + ".pdf");
-                            var attachment_ = new Attachment(path);// { Name = randomLetter + ".pdf" };
-                            mail.Attachments.Add(attachment_);
-                        }
-                        else if (chkHtmlToImageToPdf.Checked)
-                        {
-                            BaseClass.ConvertHtmlToImage(htmlChanger(ReplaceData(messagesHtml)), randomImageName);// convert html to image
-                            BaseClass.ConvertImageToPdf(randomLetter, randomImageName);//convert image to pdf 
-                            string path = Path.Combine("PdfFile", randomLetter + ".pdf");
-                            var attachment_ = new Attachment(path);// { Name = randomLetter + ".pdf" };
-                            mail.Attachments.Add(attachment_);
-                        }
-                        else if (chkHtmlToImage.Checked)
-                        {
-                            BaseClass.ConvertHtmlToImage(htmlChanger(ReplaceData(messagesHtml)), randomImageName);// convert html to image
-                            string messageWithImg = "";
-                            if (chkIsBottomBody.Checked)
-                                messageWithImg = "<br/><center><img src=\"cid:id1\"></img></center><br/><br/>" + bodyMsg; //image add to body
-                            else
-                                messageWithImg = bodyMsg + "<br/><br/><br/><center><img src=\"cid:id1\"></img></center>";
-                            LinkedResource resource = new LinkedResource("ImageFile/" + randomImageName + ".jpg");
-                            resource.ContentId = "id1";
-
-                            AlternateView view = AlternateView.CreateAlternateViewFromString(messageWithImg, null, MediaTypeNames.Text.Html);
-                            view.LinkedResources.Add(resource);
-                            //mail.Body = bodyMsg + spamFilteringkeyMessage;
-                            mail.AlternateViews.Add(view);
-
-
-                        }
-                        else if (chkHtmltemplate.Checked)
-                        {
-                            mail.Body = bodyMsg + spamFilteringkeyMessage;
-                            mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(bodyMsg + spamFilteringkeyMessage + htmlChanger(messagesHtml), new ContentType("text/html")));
-                        }
-                        #endregion
-
-                        mail.Subject = ReplaceDataSub(subjectRandom);
-                        if ((!chkHtmltemplate.Checked) && (!chkHtmlToImage.Checked))
-                        {
-                            AlternateView alternate = AlternateView.CreateAlternateViewFromString(bodyMsg + sentance + spamFilteringkeyMessage, new ContentType("text/html"));
-                            mail.AlternateViews.Add(alternate);
-                        }
-                        // set sender id and display name
-                        mail.From = new MailAddress(emailDisplayNameRandom + "<" + senderId + ">");// sender email
-                        mail.IsBodyHtml = true;
-                        // if attachment is mark checked
-                        if (chkAttachment.Checked)
-                        {
-                            if (attachment != "")
+                            Content = new MimeContent(File.OpenRead(path), ContentEncoding.Default),
+                            ContentDisposition = new ContentDisposition
                             {
-                                if (chkRandomAtthmentName.Checked)
-                                    BaseClass.ChangeFileName(attachment);//change attachment name randomly
-                                string[] filepathhs = Directory.GetFiles(attachment, "*");
-                                foreach (var filepath in filepathhs)
-                                {
-                                    var attachment_ = new Attachment(filepath);
-                                    mail.Attachments.Add(attachment_);
-                                }
-                            }
-                        }
-
-                        mail.To.Add(new MailAddress(emailTo));//client email
-                 
-                        bool result = false;
-                        using (SmtpClient smtp = new SmtpClient())
-                        {
-                            smtp.Port = port;
-                            smtp.Host = host;
-                            //message.Headers.Add();
-                            //smtp.Timeout = 30; 
-                            if (chkEnableSSL.Checked)
-                                smtp.EnableSsl = true;
-                            smtp.UseDefaultCredentials = false;
-                            smtp.Credentials = new NetworkCredential(userName, password);
-                            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                            while (pauseRun)// pause when press pause button
-                            {
-
-                            }
-                            smtp.Send(mail);// sendding mail 
-                            randomMapper++;
-                            // The email was sent successfully, and the response is a Message object 
-                            //update grid status
-                            StatusUpdateToGrid(rowIndex, true);
-                            changeSenderDisplayName++; // change sender display name after sent 50 mail
-                            sentFromPerSender++; //change sender id after sent 5 mail
-
-                            //update sender limit value
-                            if (isMultipleSender)
-                                UpdateSenderLimit(senderId);
-                            else
-                            {
-                                //check limit and break if limit over
-                                if (sentMail == sendLimitFromPerSender)
-                                {
-                                    break;
-                                }
-                            }
-                        }
-                        mail.Attachments.Dispose();
+                                Disposition = ContentDisposition.Attachment,
+                                FileName = randomLetter + ".pdf"
+                            },
+                            ContentTransferEncoding = ContentEncoding.Base64,
+                        };
+                        multipartContent.Add(attachment);
                     }
+                    else if (chkHtmlToImageToPdf.Checked)
+                    {
+                        //ConvertHtmlToImage(htmlChanger(ReplaceData(messagesHtml)), randomImageName);// convert html to image
+                        Invoke(new Action(() =>
+                        {
+                            invalidHtml = ConvertToImage.ConvertHtmlToBmp(htmlChanger(ReplaceData(messagesHtml)), "ImageFile/" + randomImageName + ".bmp");
+                        }));
+                        ConvertImageToPdf(randomLetter, randomImageName);//convert image to pdf 
+                        string path = Path.Combine("PdfFile", randomLetter + ".pdf");
+                        //var attachment_ = new Attachment(path);// { Name = randomLetter + ".pdf" };
+                        //mail.Attachments.Add(attachment_);
+                        if (!invalidHtml)
+                            return;
+                        ChangeSize(path);
+                        var attachment = new MimePart("application", "pdf")
+                        {
+                            Content = new MimeContent(File.OpenRead(path), ContentEncoding.Default),
+                            ContentDisposition = new ContentDisposition
+                            {
+                                Disposition = ContentDisposition.Attachment,
+                                FileName = path,
+
+                            },
+                            ContentTransferEncoding = ContentEncoding.Base64,
+                            FileName = randomLetter + ".pdf"
+                        };
+                        multipartContent.Add(attachment);
+                    }
+                    else if (chkHtmlToImage.Checked)
+                    {
+                        ConvertHtmlToImage(htmlChanger(ReplaceData(messagesHtml)), randomImageName);// convert html to image
+                                                                                                    //string messageWithImg = "";
+                                                                                                    //if (chkIsBottomBody.Checked)
+                                                                                                    //    messageWithImg = "<br/><center><img src=\"cid:id1\"></img></center><br/><br/>" + bodyMsg; //image add to body
+                                                                                                    //else
+                                                                                                    //    messageWithImg = bodyMsg + "<br/><br/><br/><center><img src=\"cid:id1\"></img></center>";
+                                                                                                    //LinkedResource resource = new LinkedResource("ImageFile/" + randomImageName + ".jpg");
+                                                                                                    //resource.ContentId = "id1";
+
+                        //AlternateView view = AlternateView.CreateAlternateViewFromString(messageWithImg, null, MediaTypeNames.Text.Html);
+                        //view.LinkedResources.Add(resource);
+                        ////mail.Body = bodyMsg + spamFilteringkeyMessage;
+                        //mail.AlternateViews.Add(view);
+                        var textBody = bodyMsg;// + sentance + spamFilteringkeyMessage;
+                        var textPart = new TextPart("plain")
+                        {
+                            Text = textBody
+                        };
+                        multipartContent.Add(textPart);
+
+                        // Load the image from a file
+                        var imagePath = "ImageFile/" + randomImageName + ".jpg";
+                        var imageContent = new MimeContent(File.OpenRead(imagePath), ContentEncoding.Default);
+
+                        // Create a new mime part for the image
+                        var imagePart = new MimePart("image", "jpg")
+                        {
+                            Content = imageContent,
+                            ContentDisposition = new ContentDisposition(ContentDisposition.Inline),
+                            ContentTransferEncoding = ContentEncoding.Base64
+                        };
+                        multipartContent.Add(imagePart);
+                       
+                    }
+                    else if (chkHtmltemplate.Checked)
+                    {
+                        //mail.Body = bodyMsg + spamFilteringkeyMessage;
+                        //mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(bodyMsg + spamFilteringkeyMessage + htmlChanger(messagesHtml), new ContentType("text/html")));
+
+                        // Load the web page content from a file or a URL  
+                        string body_ = bodyMsg + spamFilteringkeyMessage + htmlChanger(messagesHtml);
+
+                        var body = new TextPart("html")
+                        {
+                            Text = body_
+                        };
+                        // Create the MIME multipart/related message that will contain the HTML body and any related attachments
+                        //var multipart = new Multipart("related");
+                        multipartContent.Add(body);
+
+                    }
+                    #endregion
+                    mail.Subject = ReplaceData(subjectRandom);
+                    if ((!chkHtmltemplate.Checked) && (!chkHtmlToImage.Checked))
+                    {
+                        //AlternateView alternate = AlternateView.CreateAlternateViewFromString(bodyMsg + sentance + spamFilteringkeyMessage, new ContentType("text/html"));
+                        //mail.AlternateViews.Add(alternate);
+
+                        // Create the plain text message body
+                        var textBody = bodyMsg;// + sentance + spamFilteringkeyMessage;
+                        var textPart = new TextPart("plain")
+                        {
+                            Text = textBody
+                        };
+                        multipartContent.Add(textPart);
+                    }
+                    // set sender id and display name
+                    mail.From.Add(new MailboxAddress(emailDisplayNameRandom, senderId));
+
+                    if (chkAddLink.Checked)
+                    {
+                        // Add the custom "List-Unsubscribe" header
+                        var unsubscribeHeader = new MimeKit.Header("List-Unsubscribe", $"<http://{randomLetter.ToLower()}.com/unsubscribe>");
+                        mail.Headers.Add(unsubscribeHeader);
+
+                    }
+                    //mail.IsBodyHtml = true;
+                    // if attachment is mark checked
+                    if (chkAttachment.Checked)
+                    {
+                        if (attachment != "")
+                        {
+                            if (chkRandomAtthmentName.Checked)
+                                BaseClass.ChangeFileName(attachment);//change attachment name randomly
+                            string[] filepathhs = Directory.GetFiles(attachment, "*");
+                            foreach (var filepath in filepathhs)
+                            {
+                                //var attachment_ = new Attachment(filepath);
+                                //mail.Attachments.Add(attachment_);
+
+                                var attachment = new MimePart("application", "pdf")
+                                {
+                                    Content = new MimeContent(File.OpenRead(filepath), ContentEncoding.Default),
+                                    ContentDisposition = new ContentDisposition
+                                    {
+                                        Disposition = ContentDisposition.Attachment,
+                                        FileName = filepath
+                                    },
+                                    ContentTransferEncoding = ContentEncoding.Base64,
+                                    FileName = randomLetter + ".pdf"
+                                };
+                                multipartContent.Add(attachment);
+                            }
+                        }
+                    }
+                    mail.To.Add(new MailboxAddress("", emailTo));
+
+                    //bool result = false;
+                    while (pauseRun)// pause when press pause button
+                    {
+
+                    }
+                    mail.Body = multipartContent;
+                    // change port
+                     
+                    port = Convert.ToInt32(rdo587.Checked?587:rdo25.Checked?25:456);
+                    // Send the message
+                    using (var client = new MailKit.Net.Smtp.SmtpClient())
+                    {
+                        client.Connect(host, port, false);
+                        client.Authenticate(userName, password);
+                        client.Send(mail);
+                        totalSend++;
+                        portChange++;
+                        randomMapper++;
+                        client.Disconnect(true);
+                    }
+                    //var client = new SmtpClient();
+                    //client.Connect(host, port, SecureSocketOptions.StartTls);
+
+                    // The email was sent successfully, and the response is a Message object 
+                    //update grid status
+                    StatusUpdateToGrid(rowIndex, true);
+                    changeSenderDisplayName++; // change sender display name after sent 50 mail
+                    sentFromPerSender++; //change sender id after sent 5 mail
+
+                    //update sender limit value
+                    if (isMultipleSender)
+                        UpdateSenderLimit(senderId);
+                    else
+                    {
+                        //check limit and break if limit over
+                        if (sentMail == sendLimitFromPerSender)
+                        {
+                            break;
+                        }
+                    }
+                    // mail.Attachments.Dispose();
+
                     sentMail++;
                     Invoke(new Action(() =>
                     {
@@ -652,6 +844,27 @@ namespace EmailBOT.Tasks
                             BaseClass.Delay((int)txtDelay.Value);
                         }
                     }
+                    try
+                    {
+                        if (chkHtmlToImageToPdf.Checked)
+                            File.Delete("ImageFile/" + randomImageName + ".bmp");
+                        if (chkHtmlToImage.Checked)
+                            File.Delete("ImageFile/" + randomImageName + ".jpg");
+                        if (chkHtmlToImage.Checked || chkPdf.Checked)
+                        {
+                            string path = Path.Combine("PdfFile/", randomImageName + ".pdf");
+                            File.Delete(path);
+                        }
+                       // sentMail++;
+                        //Invoke(new Action(() =>
+                        //{
+                        //    lblTotalSentMail.Text = "Total Sent " + sentMail + " of " + totalMail;
+                        //}));
+                    }
+                    catch
+                    {
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -669,8 +882,9 @@ namespace EmailBOT.Tasks
                     //EnableDisableControls(grpSendingOptions, true);
                     rowIndex++;
                 }
-            }
 
+            }
+            totalSend = 0;
             //insert sent information
             #region // save information
             if (finalResult)
@@ -694,8 +908,8 @@ namespace EmailBOT.Tasks
             changeFileName = BaseClass.RenameFile("Done", changeFileName);
 
             //delete file 
-            BaseClass.DeleteFile("PdfFile");//delete all file from pdf folder which are converted from html 
-            BaseClass.DeleteFile("ImageFile");//delete all image file from ImageFile folder
+            //BaseClass.DeleteFile("PdfFile");//delete all file from pdf folder which are converted from html 
+            //BaseClass.DeleteFile("ImageFile");//delete all image file from ImageFile folder
             //EnableDisableControls(grpSendingOptions, true);
             Invoke(new Action(() =>
             {
@@ -712,12 +926,34 @@ namespace EmailBOT.Tasks
             html += htmlSource;
             html += "<div style='margin-left: -9999px;display:none'>";
             html += dummy;
-            if (dummySelect == 2)
+            if (totalSend % 2 == 0)
             {
-                html += dummy;
-                dummySelect = 0;
+                string dummyText = (dummy + dummy + dummy + dummy).ToUpper();
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
+                html += dummyText;
             }
-            dummySelect++;
             html += "</div>";
             html += "</div>";
             return html;
@@ -742,8 +978,11 @@ namespace EmailBOT.Tasks
                 string rowMsg = messages;
                 if (chkSentanceMaker.Checked)
                     messages = ContentProcess(messages);
-                string credential = SenderList[sentSenderEmail].Credential;
-                
+                // string credential = SenderList[sentSenderEmail].Credential;
+                //port = SenderList[0].Port;
+                host = SenderList[0].Host;
+                userName = SenderList[0].UserName;
+                password = SenderList[0].Password;
 
                 Invoke(new Action(() =>
                 {
@@ -815,6 +1054,87 @@ namespace EmailBOT.Tasks
                 return subject;
             }
         }
+        private string GetSubject()
+        {
+            try
+            {
+                int perlimit = 0, limit = 0;
+                // list email limit
+                if (SenderList == null || SenderList.Count == 0)
+                {
+                    perlimit = sendLimitFromPerSender;
+                    limit = sentSelectedMail;
+
+                }
+                else
+                {
+                    //perlimit = SenderList[sentSenderEmail].PerSenderLimit;
+                    //limit = SenderList[sentSenderEmail].Limit;//updated limit
+                    perlimit = dgvEmailList.Rows.Count;
+                    limit = perlimit - totalSend;//updated limit
+                                                 //when grid imported limit is less than selected limit 
+                                                 //int gridCount = dgvEmailList.Rows.Count;
+                                                 //if (gridCount < perlimit)
+                                                 //{
+                                                 //    perlimit = sendLimitFromPerSender;
+                                                 //    limit = sendLimitFromPerSender - (perlimit - limit);
+
+                    //}
+                }
+
+                int subLen = subjectList.Length - 1;
+                decimal findIndex = Convert.ToDecimal(limit) / (Convert.ToDecimal(perlimit) / subLen);
+                int ind = (int)Math.Round(findIndex);
+                return subjectList[ind];
+            }
+            catch
+            {
+                return subjectList[0];
+            }
+        }
+
+        private string GetContent()
+        {
+            try
+            {
+                int perlimit = 0, limit = 0;
+                // list email limit
+                if (SenderList == null || SenderList.Count == 0)
+                {
+                    perlimit = sendLimitFromPerSender;
+                    limit = sentSelectedMail;
+
+                }
+                else
+                {
+                    //perlimit = SenderList[sentSenderEmail].PerSenderLimit;
+                    //limit = SenderList[sentSenderEmail].Limit;//updated limit
+
+                    perlimit = dgvEmailList.Rows.Count;
+                    limit = perlimit - totalSend;//updated limit
+
+                    ////when grid imported limit is less than selected limit 
+                    //int gridCount = dgvEmailList.Rows.Count;
+                    //if (gridCount < perlimit)
+                    //{
+
+                    //    limit = sendLimitFromPerSender - (perlimit - limit);
+                    //    perlimit = sendLimitFromPerSender;
+                    //}  
+                }
+
+                int contLen = bodyContent.Length - 1;
+                //int subchanger = (limit / subjLen);
+                // decimal val_=(perlimit / subjLen);
+                decimal findIndex = Convert.ToDecimal(limit) / (Convert.ToDecimal(perlimit) / contLen);
+                int ind = (int)Math.Round(findIndex);
+                return bodyContent[ind];
+            }
+            catch
+            {
+                return bodyContent[0];
+            }
+        }
         private string ContentProcess(string str)
         {
             try
@@ -864,7 +1184,11 @@ namespace EmailBOT.Tasks
                     {
                         messages = ContentProcess(messages);
                     }
-                    string credential = SenderList[changeSenderOneByOne].Credential;
+                    //port = SenderList[0].Port;
+                    host = SenderList[0].Host;
+                    userName = SenderList[0].UserName;
+                    password = SenderList[0].Password;
+                    //string credential = SenderList[changeSenderOneByOne].Credential;
 
                     //try
                     //{
@@ -899,6 +1223,7 @@ namespace EmailBOT.Tasks
                 return false;
             }
         }
+
         private bool UpdateSenderLimit(string email)
         {
             // find the person with Id = 1 and update their FirstName property
@@ -1028,6 +1353,7 @@ WHERE SenderId = '{senderId}'");
             tControl.SelectTab(6);
         }
         int sentSelectedMail = 0;
+        int maxLimit = 0;
         public void btnSelecSender_Click(object sender, EventArgs e)
         {
             try
@@ -1054,10 +1380,11 @@ WHERE SenderId = '{senderId}'");
                     isMultipleSender = true;
                     chkRandomSender.Visible = true;
                     lnkViewEmailList.Visible = true;
-                    txtAppName.Text = "Multiple Name";
-                    txtFromMail.Text = "Multiple Sender";
-                    txtSubject.Text = "Multiple Subject";
+                    txtAppName.Text = "Dynamic Name";
+                    txtFromMail.Text = "Dynamic SMTP";
+                    txtSubject.Text = "Dynamic Subject";
                     chkRandomSender.Checked = true;
+                    ContentList = SenderList.Select(p => p.Content).ToList();
                     return;
                 }
                 chkRandomSender.Checked = false;
@@ -1080,7 +1407,8 @@ WHERE SenderId = '{senderId}'");
                 string limit = data[4];
                 sendLimitFromPerSender = Convert.ToInt16(limit);
                 sentSelectedMail = Convert.ToInt16(data[5]);
-                port = Convert.ToInt16(data[7]);
+                maxLimit = sendLimitFromPerSender;
+                //port = Convert.ToInt16(data[7]);
                 host = data[6];
                 userName = data[8];
                 password = data[9];
@@ -1123,12 +1451,12 @@ WHERE SenderId = '{senderId}'");
         }
         private void txtMessage_Leave(object sender, EventArgs e)
         {
-            BaseClass.Message = txtMessage;
+            //BaseClass.Message = txtMessage;
         }
 
         private void txtMessageHtml_Leave(object sender, EventArgs e)
         {
-            BaseClass.MessageHtml = txtMessageHtml;
+            //BaseClass.MessageHtml = txtMessageHtml;
         }
 
         private void lblCopyContent_Click(object sender, EventArgs e)
@@ -1370,6 +1698,43 @@ WHERE SenderId = '{senderId}'");
                 pauseRun = false;
             }
         }
+        string[] subjectList = null;
+        private void chkImportSubject_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkImportSubject.Checked)
+            {
+                subjectList = null;
+                return;
+            }
+            var subject = BaseClass.GetStringFromtxtFile().Split('|');
+            int length = subject.Length;
+            subjectList = new string[length];
+            subjectList = subject;
+            if (subjectList[0].ToString() == "")
+                chkImportSubject.Checked = false;
+            txtSubject.Text = "Dynamic Subject";
+        }
+        string[] bodyContent = null;
+        private void chkBodyContentImport_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkBodyContentImport.Checked)
+                return;
+            //UploadContent dialogForm = new UploadContent();
+            //if (dialogForm.ShowDialog() == DialogResult.OK)
+            //{
+            //    ContentList = null;
+            //    ContentList = new List<string>(BaseClass.MultiData);
+            //}
+            //GetContent();
+            var content = BaseClass.GetStringFromtxtFile().Split('|');
+            int length = content.Length;
+
+            bodyContent = new string[length];
+            bodyContent = content;
+            if (bodyContent[0].ToString() == "")
+                chkBodyContentImport.Checked = false;
+            txtMessage.Text = "Multiple Body";
+        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1459,6 +1824,101 @@ WHERE SenderId = '{senderId}'");
                 flag++;
                 MessageBox.Show("Attachment path required");
                 chkRandomAtthmentName.Checked = false;
+            }
+        }
+        private static void ConvertHtmlToImage(string htmlSource, string imageName)
+        {
+            try
+            {
+                var htmlToImageConv = new NReco.ImageGenerator.HtmlToImageConverter();
+                htmlToImageConv.Width = 595; // set width of A4 size in pixels at 72 dpi
+                                             //htmlToImageConv.Height = 942; // set height of A4 size in pixels at 72 dpi
+                var jpegBytes = htmlToImageConv.GenerateImage(htmlSource, NReco.ImageGenerator.ImageFormat.Jpeg);
+                using (var ms = new MemoryStream(jpegBytes))
+                {
+                    using (var fs = new FileStream("ImageFile/" + imageName + ".jpg", FileMode.Create))
+                    {
+                        ms.WriteTo(fs);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n Your html are not correct format.");
+            }
+        }
+        private static string ConvertHtmlToPdf(string htmlSource, string pdfName)
+        {
+            try
+            {
+                var htmlToPdf = new HtmlToPdfConverter();
+
+                //htmlToPdf.Width = 595; // set width of A4 size in pixels at 72 dpi
+                //htmlToPdf.Height = 842; // set height of A4 size in pixels at 72 dpi
+                var pdfBytes = htmlToPdf.GeneratePdf(htmlSource);
+                string path = Path.Combine("PdfFile", pdfName + ".pdf");
+                using (var ms = new MemoryStream(pdfBytes))
+                {
+                    using (var fs = new FileStream(path, FileMode.Create))
+                    {
+                        ms.WriteTo(fs);
+                    }
+                }
+                return path;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "";
+            }
+        }
+        private static void ConvertImageToPdf(string pdfName, string imageName)
+        {
+            try
+            {
+                Document document = new Document(iTextSharp.text.PageSize.A4, 0f, 0f, 0f, 0f);
+                string path = Path.Combine("PdfFile", pdfName + ".pdf");
+                using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    PdfWriter.GetInstance(document, stream);
+                    document.Open();
+                    using (var imageStream = new FileStream("ImageFile/" + imageName + ".bmp", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    {
+                        var image = Image.GetInstance(imageStream);
+                        float maxWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+                        float maxHeight = document.PageSize.Height - document.TopMargin - document.BottomMargin;
+                        if (image.Height > maxHeight || image.Width > maxWidth)
+                            image.ScaleToFit(maxWidth, maxHeight);
+                        document.Add(image);
+                    }
+                    document.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void ChangeSize(string path)
+        {
+            long minSize = 0; // 1 MB
+            long maxSize = 0; // 10 MB
+                              // get size 
+            FileInfo fileInfo = new FileInfo(path);
+            minSize = fileInfo.Length;
+            long randomNumber = random.Next(1500, 2000);
+            maxSize = minSize + randomNumber;
+            // Define the desired size range for the file 
+
+            // Generate a random file size within the range
+            var rand = new Random();
+            long fileSize = rand.Next((int)minSize, (int)maxSize);
+
+            // Create or open the file
+            using (var fs = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                // Set the file size to the random value
+                fs.SetLength(fileSize);
             }
         }
     }

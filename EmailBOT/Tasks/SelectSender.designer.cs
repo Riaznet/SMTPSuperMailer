@@ -45,20 +45,6 @@
             this.markAsValidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hIdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvList = new System.Windows.Forms.DataGridView();
-            this.ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SenderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,6 +57,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblTotalSelectedSender = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SenderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Host = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSendMail)).BeginInit();
@@ -122,7 +121,6 @@
             this.btnOk.TabIndex = 18;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
-            this.btnOk.Visible = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // panel4
@@ -219,13 +217,12 @@
             this.Name,
             this.Subject,
             this.Sent,
-            this.Check,
             this.Content,
             this.status,
             this.Host,
-            this.Port,
             this.UserName,
-            this.Password});
+            this.Password,
+            this.Check});
             this.dgvList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvList.Location = new System.Drawing.Point(7, 50);
             this.dgvList.Name = "dgvList";
@@ -237,128 +234,11 @@
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvList.Size = new System.Drawing.Size(872, 526);
             this.dgvList.TabIndex = 25;
+            this.dgvList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellClick);
+            this.dgvList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentClick);
             this.dgvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellDoubleClick);
             this.dgvList.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_CellMouseUp);
             this.dgvList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvList_DataBindingComplete);
-            // 
-            // ids
-            // 
-            this.ids.DataPropertyName = "Id";
-            this.ids.FillWeight = 30F;
-            this.ids.HeaderText = "Id";
-            this.ids.Name = "ids";
-            this.ids.ReadOnly = true;
-            this.ids.Visible = false;
-            this.ids.Width = 30;
-            // 
-            // SL
-            // 
-            this.SL.DataPropertyName = "SL";
-            this.SL.FillWeight = 30F;
-            this.SL.HeaderText = "SL";
-            this.SL.Name = "SL";
-            this.SL.ReadOnly = true;
-            this.SL.Width = 30;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.FillWeight = 60F;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Visible = false;
-            // 
-            // SenderId
-            // 
-            this.SenderId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SenderId.DataPropertyName = "SenderId";
-            this.SenderId.HeaderText = "SenderName";
-            this.SenderId.Name = "SenderId";
-            this.SenderId.ReadOnly = true;
-            // 
-            // Name
-            // 
-            this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Name.DataPropertyName = "Name";
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            this.Name.Width = 130;
-            // 
-            // Subject
-            // 
-            this.Subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Subject.DataPropertyName = "Subject";
-            this.Subject.HeaderText = "Subject";
-            this.Subject.Name = "Subject";
-            this.Subject.ReadOnly = true;
-            this.Subject.Width = 140;
-            // 
-            // Sent
-            // 
-            this.Sent.DataPropertyName = "Sent";
-            this.Sent.FillWeight = 60F;
-            this.Sent.HeaderText = "Sent";
-            this.Sent.Name = "Sent";
-            this.Sent.ReadOnly = true;
-            this.Sent.Width = 60;
-            // 
-            // Check
-            // 
-            this.Check.DataPropertyName = "Check";
-            this.Check.FillWeight = 30F;
-            this.Check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Check.HeaderText = "";
-            this.Check.Name = "Check";
-            this.Check.ReadOnly = true;
-            this.Check.Width = 30;
-            // 
-            // Content
-            // 
-            this.Content.DataPropertyName = "Content";
-            this.Content.HeaderText = "Content";
-            this.Content.Name = "Content";
-            this.Content.ReadOnly = true;
-            this.Content.Visible = false;
-            // 
-            // status
-            // 
-            this.status.DataPropertyName = "status";
-            this.status.HeaderText = "status";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Visible = false;
-            // 
-            // Host
-            // 
-            this.Host.DataPropertyName = "Host";
-            this.Host.HeaderText = "Host";
-            this.Host.Name = "Host";
-            this.Host.ReadOnly = true;
-            // 
-            // Port
-            // 
-            this.Port.DataPropertyName = "Port";
-            this.Port.HeaderText = "Port";
-            this.Port.Name = "Port";
-            this.Port.ReadOnly = true;
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "UserName";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Visible = false;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Visible = false;
             // 
             // dtpDate
             // 
@@ -384,7 +264,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(101, 8);
+            this.label2.Location = new System.Drawing.Point(101, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 27;
@@ -476,11 +356,12 @@
             this.label4.AutoSize = true;
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(240, 15);
+            this.label4.Location = new System.Drawing.Point(231, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 15);
             this.label4.TabIndex = 27;
             this.label4.Text = "Search";
+            this.label4.Visible = false;
             this.label4.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblTotalSelectedSender
@@ -510,6 +391,120 @@
             this.label5.Visible = false;
             this.label5.Click += new System.EventHandler(this.label3_Click);
             // 
+            // ids
+            // 
+            this.ids.DataPropertyName = "Id";
+            this.ids.FillWeight = 30F;
+            this.ids.HeaderText = "Id";
+            this.ids.Name = "ids";
+            this.ids.ReadOnly = true;
+            this.ids.Visible = false;
+            this.ids.Width = 30;
+            // 
+            // SL
+            // 
+            this.SL.DataPropertyName = "SL";
+            this.SL.FillWeight = 30F;
+            this.SL.HeaderText = "SL";
+            this.SL.Name = "SL";
+            this.SL.ReadOnly = true;
+            this.SL.Width = 30;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.FillWeight = 60F;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Visible = false;
+            // 
+            // SenderId
+            // 
+            this.SenderId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SenderId.DataPropertyName = "SenderId";
+            this.SenderId.HeaderText = "SenderName";
+            this.SenderId.Name = "SenderId";
+            this.SenderId.ReadOnly = true;
+            // 
+            // Name
+            // 
+            this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Name.DataPropertyName = "Name";
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            this.Name.Width = 130;
+            // 
+            // Subject
+            // 
+            this.Subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Subject.DataPropertyName = "Subject";
+            this.Subject.HeaderText = "Subject";
+            this.Subject.Name = "Subject";
+            this.Subject.ReadOnly = true;
+            this.Subject.Width = 140;
+            // 
+            // Sent
+            // 
+            this.Sent.DataPropertyName = "Sent";
+            this.Sent.FillWeight = 60F;
+            this.Sent.HeaderText = "Sent";
+            this.Sent.Name = "Sent";
+            this.Sent.ReadOnly = true;
+            this.Sent.Width = 60;
+            // 
+            // Content
+            // 
+            this.Content.DataPropertyName = "Content";
+            this.Content.HeaderText = "Content";
+            this.Content.Name = "Content";
+            this.Content.ReadOnly = true;
+            this.Content.Visible = false;
+            // 
+            // status
+            // 
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Visible = false;
+            // 
+            // Host
+            // 
+            this.Host.DataPropertyName = "Host";
+            this.Host.FillWeight = 130F;
+            this.Host.HeaderText = "Host";
+            this.Host.Name = "Host";
+            this.Host.ReadOnly = true;
+            this.Host.Width = 130;
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "UserName";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Visible = false;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
+            // 
+            // Check
+            // 
+            this.Check.DataPropertyName = "Check";
+            this.Check.FillWeight = 30F;
+            this.Check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Check.HeaderText = "";
+            this.Check.Name = "Check";
+            this.Check.ReadOnly = true;
+            this.Check.Width = 30;
+            // 
             // SendersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,7 +529,7 @@
             this.Controls.Add(this.lblClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            //this.Name = "SendersList";
+           // this.Name = "SendersList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "s";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -583,12 +578,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sent;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Check;
         private System.Windows.Forms.DataGridViewTextBoxColumn Content;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Host;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Port;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Check;
     }
 }

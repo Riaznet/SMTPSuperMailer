@@ -35,7 +35,7 @@ namespace EmailBOT.Tasks
             dgvList.DataSource = BaseClass.datatable;
             BaseClass.SenderForm = this;
             //Highlight();
-            dgvList.Columns["Check"].Visible = false;
+            //dgvList.Columns["Check"].Visible = false;
             //btnOk.Visible = false;
         }
 
@@ -210,7 +210,7 @@ namespace EmailBOT.Tasks
                 credentialData[4] = txtSendMail.Text;
                 credentialData[5] = txtSendMail.Text;
                 credentialData[6] = dgvList.Rows[rowIndex].Cells["Host"].Value.ToString();
-                credentialData[7] = dgvList.Rows[rowIndex].Cells["Port"].Value.ToString();
+                credentialData[7] = "0";
                 credentialData[8] = dgvList.Rows[rowIndex].Cells["UserName"].Value.ToString();
                 credentialData[9] = dgvList.Rows[rowIndex].Cells["Password"].Value.ToString();
                 BaseClass.Execute($"Update senderinfo set status=1 where id={dataid}");
@@ -339,6 +339,56 @@ namespace EmailBOT.Tasks
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                if (dgvList.Columns[e.ColumnIndex].HeaderText == "")
+                {
+                    DataGridViewCheckBoxCell chkchecking = dgvList.Rows[e.RowIndex].Cells["Check"] as DataGridViewCheckBoxCell;
+
+                    if (Convert.ToBoolean(chkchecking.Value) == false) // false is mean true
+                    {
+                        chkchecking.Value = true;
+                        string email = dgvList.Rows[e.RowIndex].Cells["SenderId"].Value.ToString();
+                        string name = dgvList.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                        //string credential = dgvList.Rows[e.RowIndex].Cells["Credentials"].Value.ToString();
+                        string content = dgvList.Rows[e.RowIndex].Cells["Content"].Value.ToString();
+                        string subject = dgvList.Rows[e.RowIndex].Cells["Subject"].Value.ToString();
+                        string host = dgvList.Rows[e.RowIndex].Cells["Host"].Value.ToString();
+                        string port = "0";
+                        string username = dgvList.Rows[e.RowIndex].Cells["UserName"].Value.ToString();
+                        string password = dgvList.Rows[e.RowIndex].Cells["Password"].Value.ToString();
+                        //senderList.Add(email + "|" + name + "|" + credential + "|" + txtSendMail.Value,"");
+                        senderList.Add(new EmailList { Email = email, Name = name, Content = content, Subject = subject, Host = host,Port = Convert.ToInt32(port),UserName=username,Password=password, Limit = (int)txtSendMail.Value, PerSenderLimit = (int)txtSendMail.Value });
+                        string id = dgvList.Rows[e.RowIndex].Cells["ids"].Value.ToString();
+
+                        //grid status
+                        BaseClass.Execute($"Update senderinfo set status=1 where id={id}");
+                        dgvList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+                        selected++;
+
+                    }
+                    else
+                    {
+                        chkchecking.Value = false;
+                        string email = dgvList.Rows[e.RowIndex].Cells["SenderId"].Value.ToString();
+                        senderList.Remove(senderList.Find(p => p.Email == email));
+                        //grid status
+                        dgvList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                        selected--;
+                    }
+                    // lblMultipleEmail.Text = string.Join(",", senderList);
+                    if (senderList.Count >= 1)
+                        pnlSendMail.Enabled = false;
+                    else
+                        pnlSendMail.Enabled = true;
+
+                }
+                lblTotalSelectedSender.Text = selected.ToString();
             }
         }
     }

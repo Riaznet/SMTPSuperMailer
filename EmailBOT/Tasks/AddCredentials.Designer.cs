@@ -38,7 +38,6 @@ namespace EmailBOT.Tasks
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
@@ -114,16 +113,7 @@ namespace EmailBOT.Tasks
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(351, 23);
             this.txtEmail.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(72)))), ((int)(((byte)(114)))));
-            this.label3.Location = new System.Drawing.Point(3, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "From *";
+            this.txtEmail.Visible = false;
             // 
             // panel3
             // 
@@ -174,7 +164,7 @@ namespace EmailBOT.Tasks
             // 
             // lblMessage
             // 
-            this.lblMessage.ForeColor = System.Drawing.Color.Yellow;
+            this.lblMessage.ForeColor = System.Drawing.Color.Black;
             this.lblMessage.Location = new System.Drawing.Point(61, 358);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(188, 13);
@@ -252,6 +242,8 @@ namespace EmailBOT.Tasks
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(102, 23);
             this.txtPort.TabIndex = 6;
+            this.txtPort.Text = "587";
+            this.txtPort.Visible = false;
             // 
             // label6
             // 
@@ -262,6 +254,7 @@ namespace EmailBOT.Tasks
             this.label6.Size = new System.Drawing.Size(26, 13);
             this.label6.TabIndex = 3;
             this.label6.Text = "Port";
+            this.label6.Visible = false;
             // 
             // txtUserName
             // 
@@ -319,7 +312,6 @@ namespace EmailBOT.Tasks
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.txtPort);
@@ -347,7 +339,6 @@ namespace EmailBOT.Tasks
         private Panel panel2;
         private Label lblTitle;
         private TextBox txtEmail;
-        private Label label3;
         private Panel panel3;
         private Button btnAdd;
         private Button btnReset;
